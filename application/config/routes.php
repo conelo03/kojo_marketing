@@ -78,6 +78,13 @@ $route['hapus-produk/(:any)']    	= 'Produk/hapus/$1';
 
 $route['order'] 				    = 'Order';
 $route['tambah-order'] 	        = 'Order/tambah';
+$route['all-order'] 	        = 'Order/all';
 $route['edit-order/(:any)'] 	    = 'Order/edit/$1';
 $route['hapus-order/(:any)']    	= 'Order/hapus/$1';
 $route['detail-order/(:any)']		= 'Order/detail/$1';
+$route['confirm-order/(:any)']		= 'Order/confirm/$1';
+
+$route['pelanggan'] 				    = 'Pelanggan';
+$route['tambah-pelanggan'] 	        = 'Pelanggan/tambah';
+$route['edit-pelanggan/(:any)'] 	    = 'Pelanggan/edit/$1';
+$route['hapus-pelanggan/(:any)']    	= 'Pelanggan/hapus/$1';

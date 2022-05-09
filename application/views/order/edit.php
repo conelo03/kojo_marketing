@@ -27,9 +27,14 @@
                     <?= form_error('tgl_order', '<span class="text-danger small">', '</span>'); ?>
                   </div>
                   <div class="col-md-6 form-group">
-                    <label>Nama Klien</label>
-                    <input type="text" name="klien" class="form-control" value="<?= set_value('klien', $order['klien']); ?>" required="">
-                    <?= form_error('klien', '<span class="text-danger small">', '</span>'); ?>
+                    <label>Pelanggan</label>
+                    <select name="id_pelanggan" class="form-control">
+                      <option disabled="" selected="">-- Pilih Pelanggan --</option>
+                      <?php foreach ($pelanggan as $key) { ?>
+                        <option value="<?= $key['id_pelanggan'] ?>" <?= set_value('id_pelanggan', $order['id_pelanggan']) == $key['id_pelanggan'] ? 'selected' : '' ?>><?= $key['nama_pelanggan'] ?> - <?= $key['instansi'] ?></option>
+                      <?php } ?>
+                    </select>
+                    <?= form_error('id_produk', '<span class="text-danger small">', '</span>'); ?>
                   </div>
                 </div>
                 <div class="row">

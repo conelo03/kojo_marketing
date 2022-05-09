@@ -15,11 +15,8 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>Data Order</h4>
+              <h4>Data All Order</h4>
               <div class="card-header-action">
-                <?php if(is_admin() || is_marketing()):?> 
-                <a href="<?= base_url('tambah-order');?>" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Data</a>
-                <?php endif;?>
               </div>
             </div>
             <div class="card-body">
@@ -32,9 +29,7 @@
                       <th>Klien</th>
                       <th>Produk</th>
                       <th>Jumlah</th>
-                      <th>Nama Marketing</th>
-                      <th>Status</th>
-                      <th class="text-center" style="width: 250px;">Aksi</th>
+                      <th class="text-center" style="width: 200px;">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -57,13 +52,10 @@
                         XL : <?= $u['jumlah_ukuran_xl'];?><br>
                         XXL : <?= $u['jumlah_ukuran_xxl'];?>
                       </td>
-                      <td><?= $u['nama'];?></td>
-                      <td><?= status($u['status_order']);?></td>
                       <td class="text-center">
                         <a href="<?= base_url('detail-order/'.$u['id_order']);?>" class="btn btn-light"><i class="fa fa-eye"></i> Detail</a>
                         <?php if(is_admin() || is_marketing()):?> 
-                        <a href="<?= base_url('edit-order/'.$u['id_order']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
-                        <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-order/'.$u['id_order']); ?>';"><i class="fa fa-trash"></i> Delete</button>
+                        <button class="btn btn-success" data-confirm="Anda yakin ingin mengkonfirmasi data ini?|Data yang sudah dikonfirmasi menjadi tanggung jawab anda." data-confirm-yes="document.location.href='<?= base_url('confirm-order/'.$u['id_order']); ?>';"><i class="fa fa-check"></i> Konfirmasi</button>
                         <?php endif;?>
                       </td>
                     </tr>

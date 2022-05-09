@@ -54,6 +54,10 @@
                       <span class="selectgroup-button">Admin</span>
                     </label>
                     <label class="selectgroup-item">
+                      <input type="checkbox" name="role[]" value="Kepala Marketing" class="selectgroup-input">
+                      <span class="selectgroup-button">Kepala Marketing</span>
+                    </label>
+                    <label class="selectgroup-item">
                       <input type="checkbox" name="role[]" value="Marketing" class="selectgroup-input">
                       <span class="selectgroup-button">Marketing</span>
                     </label>

@@ -25,7 +25,7 @@
             <div class="login-brand mb-4">
               <img src="<?= base_url(); ?>assets/img/kojo.jpg" alt="logo" width="100" class="shadow-light rounded-square mb-2">
               <h2 style="color: #006400;">Aplikasi</h2>
-              <h6 style="color: #DAA520;">Monitoring Produksi</h6>
+              <h6 style="color: #DAA520;">Marketing</h6>
             </div>
 
             <div class="card card-primary">

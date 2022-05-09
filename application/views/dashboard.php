@@ -8,7 +8,7 @@
     </div>
 
     <div class="section-header">
-      <h6>Selamat Datang di Aplikasi Monitoring Produksi <b>Kojo Cloth</b></h6>
+      <h6>Selamat Datang di Aplikasi Marketing <b>Kojo Cloth</b></h6>
 
     </div>
     <?php if(is_admin() || is_produksi()):?>
@@ -26,12 +26,12 @@
                     <tr>
                       <th class="text-center">#</th>
                       <th>Tgl Order</th>
-                      <th>Nama Klien</th>
+                      <th>Klien</th>
                       <th>Produk</th>
                       <th>Jumlah</th>
                       <th>Nama Marketing</th>
                       <th>Status</th>
-                      <th class="text-center" style="width: 250px;">Aksi</th>
+                      <!-- <th class="text-center" style="width: 250px;">Aksi</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -41,7 +41,11 @@
                     <tr>
                       <td class="text-center"><?= $no++;?></td>
                       <td><?= $u['tgl_order'];?></td>
-                      <td><?= $u['klien'];?></td>
+                      <td>
+                        <?= $u['nama_pelanggan'];?><br>
+                        (<?= $u['no_telepon'];?>)<br>
+                        <?= $u['instansi'];?><br>
+                      </td>
                       <td><?= $u['nama_produk'];?></td>
                       <td>
                         S : <?= $u['jumlah_ukuran_s'];?><br>
@@ -52,9 +56,9 @@
                       </td>
                       <td><?= $u['nama'];?></td>
                       <td><?= status($u['status_order']);?></td>
-                      <td class="text-center">
+                      <!-- <td class="text-center">
                         <a href="<?= base_url('detail-order/'.$u['id_order']);?>" class="btn btn-light"><i class="fa fa-eye"></i> Detail</a>
-                      </td>
+                      </td> -->
                     </tr>
                     <?php endforeach;?>
                   </tbody>

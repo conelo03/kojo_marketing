@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 		$this->db->from('tb_order');
 		$this->db->join('tb_produk', 'tb_produk.id_produk=tb_order.id_produk');
 		$this->db->join('tb_pegawai', 'tb_pegawai.id_pegawai=tb_order.id_pegawai');
+		$this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan=tb_order.id_pelanggan');
 		$this->db->where_not_in('tb_order.status_order', 4);
 		$data['order']		= $this->db->get()->result_array();
 		$this->load->view('dashboard', $data);

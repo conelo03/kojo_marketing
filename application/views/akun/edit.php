@@ -58,6 +58,10 @@
                       <span class="selectgroup-button">Admin</span>
                     </label>
                     <label class="selectgroup-item">
+                      <input type="checkbox" name="role[]" value="Kepala Marketing" class="selectgroup-input" <?= in_array("Kepala Marketing", $roles) == true ? 'checked' : '' ?>>
+                      <span class="selectgroup-button">Kepala Marketing</span>
+                    </label>
+                    <label class="selectgroup-item">
                       <input type="checkbox" name="role[]" value="Marketing" class="selectgroup-input" <?= in_array("Marketing", $roles) == true ? 'checked' : '' ?>>
                       <span class="selectgroup-button">Marketing</span>
                     </label>

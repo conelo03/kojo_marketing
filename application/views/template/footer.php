@@ -90,11 +90,11 @@
           position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
       });
     </script>
-  <?php elseif($this->session->flashdata('msg')=='lunas'):?>
+  <?php elseif($this->session->flashdata('msg')=='confirm'):?>
     <script type="text/javascript">
       iziToast.success({
           title: 'Sukses!',
-          message: 'Barang telah Lunas!',
+          message: 'Data telah dikonfirmasi!',
           position: 'topCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
       });
     </script>

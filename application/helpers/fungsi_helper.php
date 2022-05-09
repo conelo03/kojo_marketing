@@ -28,6 +28,20 @@ function is_marketing()
     return $status;
 }
 
+function is_k_marketing()
+{
+    $ci = get_instance();
+    $role = $ci->session->userdata('role');
+    $roles = explode(",", $role);
+    $status = false;
+
+    if (in_array("Kepala Marketing", $roles)) {
+        $status = true;
+    }
+
+    return $status;
+}
+
 function is_produksi()
 {
     $ci = get_instance();
