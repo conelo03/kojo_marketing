@@ -9,7 +9,7 @@ class Akun extends CI_Controller {
 		if($this->session->userdata('login') != TRUE)
 		{
 			set_pesan('Silahkan login terlebih dahulu', false);
-			redirect('');
+			redirect('administrator');
 		}
 		date_default_timezone_set("Asia/Jakarta");
 		$this->load->library('upload');

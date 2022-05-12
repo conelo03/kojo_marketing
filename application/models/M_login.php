@@ -7,4 +7,9 @@ class M_login extends CI_Model {
 	{
         return $this->db->select('*')->from('tb_akun')->join('tb_pegawai', 'tb_pegawai.id_pegawai=tb_akun.id_pegawai')->where('tb_akun.username', $username)->get();
 	}
+
+	public function get_pelanggan($username)
+	{
+        return $this->db->select('*')->from('tb_pelanggan')->where('username', $username)->get();
+	}
 }

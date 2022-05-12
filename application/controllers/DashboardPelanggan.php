@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dashboard extends CI_Controller {
+class DashboardPelanggan extends CI_Controller {
 
 	public function __construct()
 	{
@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller {
 		if($this->session->userdata('login') != TRUE)
 		{
 			set_pesan('Silahkan login terlebih dahulu', false);
-			redirect('administrator');
+			redirect('');
 		}
 		date_default_timezone_set("Asia/Jakarta");
 	}
@@ -24,6 +24,6 @@ class Dashboard extends CI_Controller {
 		$this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan=tb_order.id_pelanggan');
 		$this->db->where_not_in('tb_order.status_order', 4);
 		$data['order']		= $this->db->get()->result_array();
-		$this->load->view('dashboard', $data);
+		$this->load->view('pelanggan-page/dashboard', $data);
 	}
 }
