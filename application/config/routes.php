@@ -57,6 +57,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login-pelanggan'] 				= 'LoginPelanggan/proses';
 $route['logout-pelanggan'] 				= 'LoginPelanggan/logout';
 $route['dashboard-pelanggan']				= 'DashboardPelanggan';
+$route['riwayat-order'] 	        = 'DashboardPelanggan/riwayat_order';
+$route['tambah-order-pelanggan'] 	        = 'DashboardPelanggan/tambah_order';
+$route['edit-order-pelanggan/(:any)'] 	    = 'DashboardPelanggan/edit_order/$1';
+$route['hapus-order-pelanggan/(:any)']    	= 'DashboardPelanggan/hapus_order/$1';
 
 //pegawai
 $route['administrator'] 				= 'Login';

@@ -2,7 +2,7 @@
   <div class="main-wrapper container">
     <div class="navbar-bg" style="height: 70px"></div>
     <nav class="navbar navbar-expand-lg main-navbar">
-      <a href="index.html" class="navbar-brand sidebar-gone-hide">Stisla</a>
+      <a href="<?= base_url('dashboard-pelanggan') ?>" class="navbar-brand sidebar-gone-hide">KOJO</a>
       <div class="navbar-nav">
         <a href="#" class="nav-link sidebar-gone-show" data-toggle="sidebar"><i class="fas fa-bars"></i></a>
       </div>
@@ -11,9 +11,8 @@
           <i class="fas fa-ellipsis-v"></i>
         </a>
         <ul class="navbar-nav">
-          <li class="nav-item active"><a href="#" class="nav-link">Application</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Report Something</a></li>
-          <li class="nav-item"><a href="#" class="nav-link">Server Status</a></li>
+          <li class="nav-item <?= $title == 'Dashboard' ? 'active' : '' ?>"><a href="<?= base_url('dashboard-pelanggan') ?>" class="nav-link">Home</a></li>
+          <li class="nav-item <?= $title == 'Riwayat Order' ? 'active' : '' ?>"><a href="<?= base_url('riwayat-order') ?>" class="nav-link">Riwayat Order</a></li>
         </ul>
       </div>
       <!-- <form class="form-inline ml-auto">

@@ -4,7 +4,7 @@
 <div class="main-content" style="padding-top: 100px;">
   <section class="section">
     <div class="section-header">
-      <h1>My Order</h1>
+      <h1>Riwayat Order</h1>
       <div class="section-header-breadcrumb">
         <div class="breadcrumb-item active"><a href="#">Home</a></div>
         <div class="breadcrumb-item"><a href="#">My Order</a></div>
@@ -14,10 +14,7 @@
     <div class="section-body">
       <div class="card">
         <div class="card-header">
-          <h4>Data Order</h4>
-          <div class="card-header-action">
-            <a href="<?= base_url('tambah-order-pelanggan');?>" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Data</a>
-          </div>
+          <h4>Data Riwayat Order</h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -55,10 +52,7 @@
                     XXL : <?= $u['jumlah_ukuran_xxl'];?>
                   </td>
                   <td class="text-center">
-                    <?php if($u['id_pegawai'] == 0):?> 
-                    <a href="<?= base_url('edit-order-pelanggan/'.$u['id_order']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
-                    <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-order-pelanggan/'.$u['id_order']); ?>';"><i class="fa fa-trash"></i> Delete</button>
-                    <?php endif;?>
+                  <button class="btn btn-info" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('ulasan-order-pelanggan/'.$u['id_order']); ?>';"><i class="fa fa-edit"></i> Ulasan</button>
                   </td>
                 </tr>
                 <?php endforeach;?>
