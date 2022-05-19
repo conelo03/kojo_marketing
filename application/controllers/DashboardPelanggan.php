@@ -41,4 +41,21 @@ class DashboardPelanggan extends CI_Controller {
 		$data['order']		= $this->db->get()->result_array();
 		$this->load->view('pelanggan-page/riwayat_order', $data);
 	}
+
+	public function ulasan_order($id_order)
+	{
+		$data		= $this->input->post(null, true);
+		$data_akun	= [
+			'id_order' => $id_order,
+			'rate'		=> $data['rate'],
+			'ulasan'		=> $data['ulasan']
+		];
+		if ($this->M_order->update($data_akun)) {
+			$this->session->set_flashdata('msg', 'error');
+			redirect('riwayat-order');
+		} else {
+			$this->session->set_flashdata('msg', 'success');
+			redirect('riwayat-order');
+		}
+	}
 }

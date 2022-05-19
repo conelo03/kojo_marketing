@@ -61,6 +61,7 @@ $route['riwayat-order'] 	        = 'DashboardPelanggan/riwayat_order';
 $route['tambah-order-pelanggan'] 	        = 'DashboardPelanggan/tambah_order';
 $route['edit-order-pelanggan/(:any)'] 	    = 'DashboardPelanggan/edit_order/$1';
 $route['hapus-order-pelanggan/(:any)']    	= 'DashboardPelanggan/hapus_order/$1';
+$route['ulasan-order/(:any)']    	= 'DashboardPelanggan/ulasan_order/$1';
 
 //pegawai
 $route['administrator'] 				= 'Login';

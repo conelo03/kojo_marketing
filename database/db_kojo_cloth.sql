@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2022 at 02:14 PM
+-- Generation Time: May 19, 2022 at 05:01 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.2.33
 
@@ -164,6 +164,8 @@ CREATE TABLE `tb_order` (
   `catatan` text NOT NULL,
   `status_order` int(11) DEFAULT NULL,
   `id_pegawai` int(11) DEFAULT NULL,
+  `rate` int(1) DEFAULT NULL,
+  `ulasan` text,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -171,9 +173,9 @@ CREATE TABLE `tb_order` (
 -- Dumping data for table `tb_order`
 --
 
-INSERT INTO `tb_order` (`id_order`, `tgl_order`, `id_pelanggan`, `id_produk`, `jumlah_ukuran_s`, `jumlah_ukuran_m`, `jumlah_ukuran_l`, `jumlah_ukuran_xl`, `jumlah_ukuran_xxl`, `design_order`, `catatan`, `status_order`, `id_pegawai`, `created_at`) VALUES
-(4, '2022-04-21', 1, 2, 5, 5, 5, 5, 5, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'catatan', 4, 4, '2022-04-21 21:28:27'),
-(5, '2022-04-21', 1, 2, 5, 4, 5, 5, 6, '', 'xxx', 0, 4, '2022-04-22 23:49:02');
+INSERT INTO `tb_order` (`id_order`, `tgl_order`, `id_pelanggan`, `id_produk`, `jumlah_ukuran_s`, `jumlah_ukuran_m`, `jumlah_ukuran_l`, `jumlah_ukuran_xl`, `jumlah_ukuran_xxl`, `design_order`, `catatan`, `status_order`, `id_pegawai`, `rate`, `ulasan`, `created_at`) VALUES
+(4, '2022-04-21', 1, 2, 5, 5, 5, 5, 5, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'catatan', 4, 4, 3, 'ulasan tes', '2022-04-21 21:28:27'),
+(5, '2022-04-21', 1, 2, 5, 4, 5, 5, 6, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'xxx', 0, 0, NULL, NULL, '2022-04-22 23:49:02');
 
 -- --------------------------------------------------------
 
