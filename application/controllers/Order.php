@@ -29,7 +29,7 @@ class Order extends CI_Controller {
 		$this->db->from('tb_order');
 		$this->db->join('tb_produk', 'tb_produk.id_produk=tb_order.id_produk');
 		$this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan=tb_order.id_pelanggan');
-		$this->db->where('tb_order.id_pegawai =', null);
+		$this->db->where('tb_order.id_pegawai =', 0);
 		$data['order']		= $this->db->get()->result_array();
 		$this->load->view('order/data_all', $data);
 	}
