@@ -54,13 +54,16 @@
                   </td>
                   <td>
                     <?php 
-                      for ($i=1; $i <= 5; $i++) { 
-                        if ($i <= $u['rate']) {?>
-                          <span class="fa fa-star checked-star"></span>
-                        <?php } else { ?>
-                          <span class="fa fa-star"></span>
-                        <?php }
-                    } ?>
+                      if ($u['rate'] != 0 || $u['rate'] != NULL) {
+                        for ($i=1; $i <= 5; $i++) { 
+                          if ($i <= $u['rate']) {?>
+                            <span class="fa fa-star checked-star"></span>
+                          <?php } else { ?>
+                            <span class="fa fa-star"></span>
+                          <?php }
+                        }
+                      }
+                    ?>
                     <br/><?= $u['ulasan'] ?>
                   </td>
                   <td class="text-center">
