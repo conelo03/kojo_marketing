@@ -91,6 +91,7 @@ $route['hapus-produk/(:any)']    	= 'Produk/hapus/$1';
 $route['order'] 				    = 'Order';
 $route['tambah-order'] 	        = 'Order/tambah';
 $route['all-order'] 	        = 'Order/all';
+$route['admin-riwayat-order']		= 'Order/riwayat';
 $route['edit-order/(:any)'] 	    = 'Order/edit/$1';
 $route['hapus-order/(:any)']    	= 'Order/hapus/$1';
 $route['detail-order/(:any)']		= 'Order/detail/$1';
@@ -100,3 +101,13 @@ $route['pelanggan'] 				    = 'Pelanggan';
 $route['tambah-pelanggan'] 	        = 'Pelanggan/tambah';
 $route['edit-pelanggan/(:any)'] 	    = 'Pelanggan/edit/$1';
 $route['hapus-pelanggan/(:any)']    	= 'Pelanggan/hapus/$1';
+
+$route['agenda'] 				    = 'Agenda';
+$route['tambah-agenda'] 	        = 'Agenda/tambah';
+$route['edit-agenda/(:any)'] 	    = 'Agenda/edit/$1';
+$route['hapus-agenda/(:any)']    	= 'Agenda/hapus/$1';
+
+$route['detail-agenda/(:any)'] 				    = 'Agenda/detail/$1';
+$route['tambah-detail-agenda/(:any)'] 	        = 'Agenda/tambah_detail/$1';
+$route['edit-detail-agenda/(:any)/(:any)'] 	    = 'Agenda/edit_detail/$1/$2';
+$route['hapus-detail-agenda/(:any)/(:any)']    	= 'Agenda/hapus_detail/$1/$2';

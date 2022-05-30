@@ -18,7 +18,7 @@ class Order extends CI_Controller {
 	public function index()
 	{
     $data['title']		= 'Data Order';
-		$data['order']		= $this->M_order->get_data($this->session->userdata('id_pegawai'), null, true)->result_array();
+		$data['order']		= $this->M_order->get_data(is_admin() ? null : $this->session->userdata('id_pegawai'), null, true)->result_array();
 		$this->load->view('order/data', $data);
 	}
 
@@ -32,6 +32,13 @@ class Order extends CI_Controller {
 		$this->db->where('tb_order.id_pegawai =', 0);
 		$data['order']		= $this->db->get()->result_array();
 		$this->load->view('order/data_all', $data);
+	}
+
+	public function riwayat()
+	{
+    $data['title']		= 'Riwayat Order';
+		$data['order']		= $this->M_order->get_data_riwayat()->result_array();
+		$this->load->view('order/data_riwayat', $data);
 	}
 
 	public function tambah()

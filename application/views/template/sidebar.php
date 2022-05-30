@@ -54,10 +54,11 @@ $get_user = $this->db->get_where('tb_pegawai', ['id_pegawai' => $id_pegawai])->r
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-cart-plus"></i> <span>Data Order</span></a>
               <ul class="dropdown-menu">
                 <li class="<?= $title == 'All Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('all-order');?>">All Order</a></li>
-                <li class="<?= $title == 'Data Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('order');?>">My Order</a></li>
+                <li class="<?= $title == 'Data Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('order');?>"><?= is_admin() ? 'Data Order' : 'My Order' ?></a></li>
               </ul>
             </li>    
-    
+            <li class="<?= $title == 'Riwayat Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('admin-riwayat-order');?>"><i class="fas fa-list"></i> <span>Riwayat Order</span></a></li> 
+            <li class="<?= $title == 'Data Agenda' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('agenda');?>"><i class="fas fa-calendar"></i> <span>Data Agenda</span></a></li> 
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
