@@ -22,7 +22,7 @@
               <div class="card-body">
                 <div class="form-group">
                   <label>Pegawai</label>
-                  <select name="id_pegawai" class="form-control">
+                  <select name="id_pegawai" class="form-control" id="select-pegawai" data-live-search="true">
                     <option disabled="" selected="">-- Pilih Pegawai --</option>
                     <?php 
                       foreach ($pegawai as $key) { ?>

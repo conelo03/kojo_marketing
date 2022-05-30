@@ -27,6 +27,7 @@ class Pelanggan extends CI_Controller {
 		$this->validation();
 		if (!$this->form_validation->run()) {
 			$data['title']		= 'Data Pelanggan';
+			$data['kota'] = $this->db->get('tb_kota')->result_array();
 			$this->load->view('pelanggan/tambah', $data);
 		} else {
 			$data		= $this->input->post(null, true);
@@ -56,6 +57,7 @@ class Pelanggan extends CI_Controller {
 		if (!$this->form_validation->run()) {
 			$data['title']		= 'Data Pelanggan';
 			$data['pelanggan']	= $this->M_pelanggan->get_by_id($id_pelanggan);
+			$data['kota'] = $this->db->get('tb_kota')->result_array();
 			$this->load->view('pelanggan/edit', $data);
 		} else {
 			$data		= $this->input->post(null, true);

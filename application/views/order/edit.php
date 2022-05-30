@@ -28,7 +28,7 @@
                   </div>
                   <div class="col-md-6 form-group">
                     <label>Pelanggan</label>
-                    <select name="id_pelanggan" class="form-control">
+                    <select name="id_pelanggan" class="form-control" id="select-pelanggan" data-live-search="true">
                       <option disabled="" selected="">-- Pilih Pelanggan --</option>
                       <?php foreach ($pelanggan as $key) { ?>
                         <option value="<?= $key['id_pelanggan'] ?>" <?= set_value('id_pelanggan', $order['id_pelanggan']) == $key['id_pelanggan'] ? 'selected' : '' ?>><?= $key['nama_pelanggan'] ?> - <?= $key['instansi'] ?></option>
@@ -40,7 +40,7 @@
                 <div class="row">
                   <div class="col-md-6 form-group">
                     <label>Produk</label>
-                    <select name="id_produk" class="form-control">
+                    <select name="id_produk" class="form-control" id="select-produk" data-live-search="true">
                       <option disabled="" selected="">-- Pilih Produk --</option>
                       <?php foreach ($produk as $key) { ?>
                         <option value="<?= $key['id_produk'] ?>" <?= set_value('id_produk', $order['id_produk']) == $key['id_produk'] ? 'selected' : '' ?>><?= $key['nama_produk'] ?> - <?= $key['jenis_produk'] ?></option>

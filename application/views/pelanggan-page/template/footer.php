@@ -64,7 +64,7 @@
       $('#select-pegawai').selectpicker({
         search : true,
       });
-      $('#select-golruang').selectpicker({
+      $('#select-produk').selectpicker({
         search : true,
       });
       $('#select-bidang').selectpicker({

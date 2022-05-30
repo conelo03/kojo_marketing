@@ -61,16 +61,16 @@
       $('#datatables-izin').DataTable({
         "ordering": false,
       });
+      $('#select-kota').selectpicker({
+        search : true,
+      });
+      $('#select-pelanggan').selectpicker({
+        search : true,
+      });
+      $('#select-produk').selectpicker({
+        search : true,
+      });
       $('#select-pegawai').selectpicker({
-        search : true,
-      });
-      $('#select-golruang').selectpicker({
-        search : true,
-      });
-      $('#select-bidang').selectpicker({
-        search : true,
-      });
-      $('#select-jabatan').selectpicker({
         search : true,
       });
       $('#select-atasan').selectpicker({

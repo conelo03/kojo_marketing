@@ -51,6 +51,16 @@
                   <?= form_error('alamat', '<span class="text-danger small">', '</span>'); ?>
                 </div>
                 <div class="form-group">
+                  <label>Kota</label>
+                  <select class="form-control" name="id_kota" id="select-kota" data-live-search="true">
+                    <option disabled selected>-- Pilih Kota --</option>
+                    <?php foreach ($kota as $key) { ?>
+                      <option value="<?= $key['id_kota'] ?>" <?= set_value('id_kota') == $key['id_kota'] ? 'selected' : '' ?>><?= $key['nama_kota'] ?></option>
+                    <?php } ?>
+                  </select>
+                  <?= form_error('id_kota', '<span class="text-danger small">', '</span>'); ?>
+                </div>
+                <div class="form-group">
                   <label>Instansi</label>
                   <input type="text" name="instansi" class="form-control" value="<?= set_value('instansi'); ?>" required="">
                   <?= form_error('instansi', '<span class="text-danger small">', '</span>'); ?>
@@ -73,7 +83,7 @@
               </div>
 
               <div class="card-footer text-right">
-                <a href="<?= base_url('akun');?>" class="btn btn-light"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <a href="<?= base_url('pelanggan');?>" class="btn btn-light"><i class="fa fa-arrow-left"></i> Kembali</a>
                 <button type="reset" class="btn btn-danger"><i class="fa fa-sync"></i> Reset</button>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
               </div>
