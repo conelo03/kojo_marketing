@@ -23,7 +23,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-3">
-                    <img src="<?= base_url('assets/img/profile/'.$pegawai['foto']) ?>" class="rounded" style="max-width: 200px">
+                    <img src="<?= custom_url('assets/img/profile/'.$pegawai['foto']) ?>" class="rounded" style="max-width: 200px">
                   </div>
                   <div class="col-md-8">
                     <div class="row">
