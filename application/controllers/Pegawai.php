@@ -108,7 +108,7 @@ class Pegawai extends CI_Controller {
 
 	private function upload_foto()
 	{
-	    $config['upload_path'] = './assets/img/profile';
+	    $config['upload_path'] = '../produksi-kojo/assets/img/profile';
 	    $config['allowed_types'] = 'jpg|png|jpeg';
 	    $config['max_size'] = 10000;
 	    $this->upload->initialize($config);

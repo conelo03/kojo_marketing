@@ -108,6 +108,13 @@ function set_pesan($pesan, $tipe = true)
     }
 }
 
+function custom_url($url)
+{
+    $base = 'http://localhost/produksi-kojo/'.$url;
+
+    return $base;
+}
+
 function status($status)
 {
     $stat = '';

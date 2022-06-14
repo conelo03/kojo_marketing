@@ -37,7 +37,7 @@
                 foreach($order as $u):?>
                 <tr>
                   <td class="text-center"><?= $no++;?></td>
-                  <td><img src="<?= base_url('assets/upload/design_order/'.$u['design_order']) ?>" width="200px" /></td>
+                  <td><img src="<?= custom_url('assets/upload/design_order/'.$u['design_order']) ?>" width="200px" /></td>
                   <td><?= $u['nama_produk'];?></td>
                   <td><?= $u['tgl_order'];?></td>
                   <td>

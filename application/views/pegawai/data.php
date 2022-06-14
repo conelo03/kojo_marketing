@@ -44,7 +44,7 @@
                       <td><?= $u['nip'];?></td>
                       <td><?= $u['jabatan'];?></td>
                       <td><?= $u['alamat'] ?></td>
-                      <td><img src="<?= base_url('assets/img/profile/'.$u['foto']) ?>" class="img" style="width: 100px;"></td>
+                      <td><img src="<?= custom_url('assets/img/profile/'.$u['foto']) ?>" class="img" style="width: 100px;"></td>
                       <td class="text-center">
                         <a href="<?= base_url('edit-pegawai/'.$u['id_pegawai']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
                         <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-pegawai/'.$u['id_pegawai']); ?>';"><i class="fa fa-trash"></i> Delete</button>
