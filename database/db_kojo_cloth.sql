@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2022 at 04:29 PM
+-- Generation Time: Jun 14, 2022 at 01:19 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.2.33
 
@@ -187,8 +187,8 @@ CREATE TABLE `tb_detail_gaji_produksi` (
 --
 
 INSERT INTO `tb_detail_gaji_produksi` (`id_detail_gaji_produksi`, `id_gaji_produksi`, `id_pegawai`, `jumlah`, `kasbon`, `total`) VALUES
-(5, 2, 5, 59000, 2000, 57000),
-(6, 2, 12, 78000, 50, 77950);
+(7, 4, 5, 59000, 2000, 57000),
+(8, 4, 12, 78000, 50, 77950);
 
 -- --------------------------------------------------------
 
@@ -230,7 +230,7 @@ CREATE TABLE `tb_gaji_produksi` (
 --
 
 INSERT INTO `tb_gaji_produksi` (`id_gaji_produksi`, `tanggal_pencairan`, `jumlah`, `keterangan`, `status`) VALUES
-(2, '2022-04-23', 134950, 'Gaji Mingguan Produksi', 2);
+(4, '2022-04-23', 134950, 'Gaji Mingguan Produksi', 2);
 
 -- --------------------------------------------------------
 
@@ -865,7 +865,7 @@ CREATE TABLE `tb_order` (
 
 INSERT INTO `tb_order` (`id_order`, `tgl_order`, `id_pelanggan`, `id_produk`, `jumlah_ukuran_s`, `jumlah_ukuran_m`, `jumlah_ukuran_l`, `jumlah_ukuran_xl`, `jumlah_ukuran_xxl`, `design_order`, `catatan`, `status_order`, `id_pegawai`, `rate`, `ulasan`, `created_at`) VALUES
 (4, '2022-04-21', 1, 2, 5, 5, 5, 5, 5, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'catatan', 4, 4, 3, 'ulasan tes', '2022-04-21 21:28:27'),
-(5, '2022-04-21', 1, 2, 5, 4, 5, 5, 6, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'xxx', 0, 0, NULL, NULL, '2022-04-22 23:49:02'),
+(5, '2022-04-21', 2, 2, 5, 4, 5, 5, 6, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'xxx', 0, 0, NULL, NULL, '2022-04-22 23:49:02'),
 (6, '2022-05-29', 1, 3, 5, 6, 7, 3, 1, 'aj_(2).jpeg', 'tidak ada', 0, 10, NULL, NULL, '2022-05-29 21:13:32');
 
 -- --------------------------------------------------------
@@ -1058,8 +1058,8 @@ CREATE TABLE `tb_pengeluaran` (
 INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `tanggal`, `id_jenis_pengeluaran`, `keterangan`, `referensi`, `jumlah`) VALUES
 (1, '2022-06-02', 1, 'HPP Order 1', 'ref 1', 1000000),
 (2, '2022-06-01', 1, 'HPP Order 2', 'Ref 2', 2000000),
-(4, '2022-04-23', 2, 'Gaji Mingguan Produksi', '-', 134950),
-(5, '2022-06-02', 2, 'Gaji Karyawan', '-', 5600000);
+(5, '2022-06-02', 2, 'Gaji Karyawan', '-', 5600000),
+(7, '2022-04-23', 2, 'Gaji Mingguan Produksi', '-', 134950);
 
 -- --------------------------------------------------------
 
@@ -1135,8 +1135,8 @@ CREATE TABLE `tb_produk` (
 --
 
 INSERT INTO `tb_produk` (`id_produk`, `jenis_produk`, `nama_produk`, `bahan`, `foto_produk`, `pnj_kain_s`, `pnj_kain_m`, `pnj_kain_l`, `pnj_kain_xl`, `pnj_kain_xxl`, `harga_kain`, `jml_kancing_s`, `jml_kancing_m`, `jml_kancing_l`, `jml_kancing_xl`, `jml_kancing_xxl`, `harga_kancing`, `pnj_resleting_s`, `pnj_resleting_m`, `pnj_resleting_l`, `pnj_resleting_xl`, `pnj_resleting_xxl`, `harga_resleting`, `jml_prepet_s`, `jml_prepet_m`, `jml_prepet_l`, `jml_prepet_xl`, `jml_prepet_xxl`, `harga_prepet`, `pnj_rib_s`, `pnj_rib_m`, `pnj_rib_l`, `pnj_rib_xl`, `pnj_rib_xxl`, `harga_rib`) VALUES
-(2, 'jenis 1', 'produk 1', 'bahan 1', 'aj_(2).jpeg', 0.9, 0.93, 0, 0, 0, 20000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 'Kaos Combed 305', 'Kaos Combed 305', 'Combed 305', 'aj_(2)1.jpeg', 0.9, 0.93, 0.97, 1, 1.05, 20000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.53, 0.56, 0.6, 0.63, 10000);
+(2, 'Jaket', 'Jaket', 'bahan 1', 'aj_(2).jpeg', 0.9, 0.93, 0, 0, 0, 20000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(3, 'Kaos', 'Kaos Combed 305', 'Combed 305', 'aj_(2)1.jpeg', 0.9, 0.93, 0.97, 1, 1.05, 20000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 0.53, 0.56, 0.6, 0.63, 10000);
 
 -- --------------------------------------------------------
 
@@ -1187,6 +1187,30 @@ INSERT INTO `tb_qc` (`id_qc`, `id_order`, `id_pegawai`, `file_qc`, `catatan_qc`,
 (1, 4, 1, '5533-15688-1-PB.pdf', 'tes qc', 4, '2022-04-22 23:20:47'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:31:01'),
 (3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_rekapitulasi`
+--
+
+CREATE TABLE `tb_rekapitulasi` (
+  `id_rekapitulasi` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
+  `jas` int(11) NOT NULL,
+  `jaket` int(11) NOT NULL,
+  `kaos` int(11) NOT NULL,
+  `kemeja` int(11) NOT NULL,
+  `sweater` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_rekapitulasi`
+--
+
+INSERT INTO `tb_rekapitulasi` (`id_rekapitulasi`, `id_pelanggan`, `jas`, `jaket`, `kaos`, `kemeja`, `sweater`) VALUES
+(1, 1, 0, 25, 0, 0, 0),
+(2, 2, 0, 25, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -1349,6 +1373,12 @@ ALTER TABLE `tb_qc`
   ADD PRIMARY KEY (`id_qc`);
 
 --
+-- Indexes for table `tb_rekapitulasi`
+--
+ALTER TABLE `tb_rekapitulasi`
+  ADD PRIMARY KEY (`id_rekapitulasi`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1392,7 +1422,7 @@ ALTER TABLE `tb_detail_gaji`
 -- AUTO_INCREMENT for table `tb_detail_gaji_produksi`
 --
 ALTER TABLE `tb_detail_gaji_produksi`
-  MODIFY `id_detail_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_detail_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_gaji`
@@ -1404,7 +1434,7 @@ ALTER TABLE `tb_gaji`
 -- AUTO_INCREMENT for table `tb_gaji_produksi`
 --
 ALTER TABLE `tb_gaji_produksi`
-  MODIFY `id_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_jahit`
@@ -1482,7 +1512,7 @@ ALTER TABLE `tb_pemasukan`
 -- AUTO_INCREMENT for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_pengiriman`
@@ -1507,6 +1537,12 @@ ALTER TABLE `tb_purchase`
 --
 ALTER TABLE `tb_qc`
   MODIFY `id_qc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tb_rekapitulasi`
+--
+ALTER TABLE `tb_rekapitulasi`
+  MODIFY `id_rekapitulasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
