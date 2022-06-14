@@ -58,7 +58,8 @@ $get_user = $this->db->get_where('tb_pegawai', ['id_pegawai' => $id_pegawai])->r
               </ul>
             </li>    
             <li class="<?= $title == 'Riwayat Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('admin-riwayat-order');?>"><i class="fas fa-list"></i> <span>Riwayat Order</span></a></li> 
-            <li class="<?= $title == 'Data Agenda' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('agenda');?>"><i class="fas fa-calendar"></i> <span>Data Agenda</span></a></li> 
+            <li class="<?= $title == 'Data Agenda' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('agenda');?>"><i class="fas fa-calendar"></i> <span>Data Agenda</span></a></li>
+            <li class="<?= $title == 'Rekapitulasi Order' ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url('rekapitulasi-order');?>"><i class="fas fa-calendar"></i> <span>Rekapitulasi Order</span></a></li> 
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

@@ -96,6 +96,7 @@ $route['edit-order/(:any)'] 	    = 'Order/edit/$1';
 $route['hapus-order/(:any)']    	= 'Order/hapus/$1';
 $route['detail-order/(:any)']		= 'Order/detail/$1';
 $route['confirm-order/(:any)']		= 'Order/confirm/$1';
+$route['rekapitulasi-order'] = 'Order/rekapitulasi';
 
 $route['pelanggan'] 				    = 'Pelanggan';
 $route['tambah-pelanggan'] 	        = 'Pelanggan/tambah';
