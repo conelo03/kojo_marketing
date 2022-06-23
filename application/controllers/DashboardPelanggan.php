@@ -45,20 +45,35 @@ class DashboardPelanggan extends CI_Controller {
 
 	public function ulasan_order($id_order)
 	{
-		$data		= $this->input->post(null, true);
-		$data_akun	= [
-			'id_order' => $id_order,
-			'rate'		=> $data['rate'],
-			'ulasan'		=> $data['ulasan']
-		];
-		if ($this->M_order->update($data_akun)) {
-			$this->session->set_flashdata('msg', 'error');
-			redirect('riwayat-order');
-		} else {
-			$this->session->set_flashdata('msg', 'success');
-			redirect('riwayat-order');
+		$this->validation_ulasan();
+		if (!$this->form_validation->run()) {
+			$data['title']	= 'Riwayat Order';
+			$data['order']	= $this->M_order->get_by_id($id_order);
+			$this->load->view('pelanggan-page/ulasan_order', $data);
+		}else{
+			$data		= $this->input->post(null, true);
+			$data_akun	= [
+				'id_order' => $id_order,
+				'rate'		=> $data['rate'],
+				'ulasan'		=> $data['ulasan']
+			];
+			if ($this->M_order->update($data_akun)) {
+				$this->session->set_flashdata('msg', 'error');
+				redirect('ulasan-order/'.$id_order);
+			} else {
+				$this->session->set_flashdata('msg', 'success');
+				redirect('riwayat-order');
+			}
 		}
+		
 	}
+
+	private function validation_ulasan()
+	{
+		$this->form_validation->set_rules('rate', 'Rate', 'required|trim');
+		$this->form_validation->set_rules('ulasan', 'Ulasan', 'required|trim');
+		
+	} 
 
 	public function tambah_order()
 	{

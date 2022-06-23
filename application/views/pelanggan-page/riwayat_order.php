@@ -67,7 +67,7 @@
                     <br/><?= $u['ulasan'] ?>
                   </td>
                   <td class="text-center">
-                    <button class="btn btn-info"  data-toggle="modal" data-target="#exampleModal<?= $u['id_order'] ?>"><i class="fa fa-edit"></i> Ulasan</button>
+                  <a class="btn btn-info" href="<?= base_url('ulasan-order/'.$u['id_order']) ?>"><i class="fa fa-edit"></i> Ulasan</a>
                   </td>
                 </tr>
                 <?php endforeach;?>
@@ -80,51 +80,4 @@
   </section>
 </div>
 
-
-<?php
-$no = 1; 
-foreach($order as $u):?>
-<div class="modal fade" id="exampleModal<?= $u['id_order'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ulasan</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="<?= base_url('ulasan-order/'.$u['id_order']) ?>" method="POST">
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="">Berikan Penilaian</label><br>
-          <div class="rate">
-            <input type="radio" id="star5" name="rate" value="5" <?= $u['rate'] == '5' ? 'checked' : '' ?>/>
-            <label for="star5" title="text">5 stars</label>
-            <input type="radio" id="star4" name="rate" value="4" <?= $u['rate'] == '4' ? 'checked' : '' ?>/>
-            <label for="star4" title="text">4 stars</label>
-            <input type="radio" id="star3" name="rate" value="3" <?= $u['rate'] == '3' ? 'checked' : '' ?>/>
-            <label for="star3" title="text">3 stars</label>
-            <input type="radio" id="star2" name="rate" value="2" <?= $u['rate'] == '2' ? 'checked' : '' ?>/>
-            <label for="star2" title="text">2 stars</label>
-            <input type="radio" id="star1" name="rate" value="1" <?= $u['rate'] == '1' ? 'checked' : '' ?>/>
-            <label for="star1" title="text">1 star</label>
-          </div>
-        </div>
-        <br/>
-        <br/>
-        <div class="form-group">
-          <label>Deskripsi Ulasan</label>
-          <textarea name="ulasan" class="form-control" required=""><?= $u['ulasan']; ?></textarea>
-          <?= form_error('ulasan', '<span class="text-danger small">', '</span>'); ?>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<?php endforeach;?>
 <?php $this->load->view('pelanggan-page/template/footer');?>
