@@ -53,11 +53,17 @@
                     </button>
                   </div>
                 </form>
-                <div class="simple-footer mb-0">
-                  Copyright 2022 Stisla
-                </div>
               </div>
             </div>
+            <div class="mt-5 text-muted text-center">
+              Belum punya akun? <a href="<?= base_url('registrasi-pelanggan') ?>">Buat Akun</a>
+            </div>
+            <div class="text-muted text-center">
+              <a href="<?= base_url('') ?>">Kembali ke menu utama</a>
+            </div>
+            <div class="simple-footer">
+                  Copyright 2022 Stisla
+                </div>
           </div>
         </div>
       </div>

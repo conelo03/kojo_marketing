@@ -9,7 +9,7 @@ class DashboardPelanggan extends CI_Controller {
 		if($this->session->userdata('login') != TRUE)
 		{
 			set_pesan('Silahkan login terlebih dahulu', false);
-			redirect('');
+			redirect('LoginPelanggan');
 		}
 		date_default_timezone_set("Asia/Jakarta");
 		$this->load->library('upload');
@@ -17,7 +17,17 @@ class DashboardPelanggan extends CI_Controller {
 
 	public function index()
 	{
-		$data['title']	= 'Dashboard';
+		$data['title']	= 'Home';
+		$this->db->select('*');
+		$this->db->from('tb_produk');
+		$this->db->order_by('id_produk', 'DESC');
+		$data['produk']		= $this->db->get()->result_array();
+		$this->load->view('pelanggan-page/produk', $data);
+	}
+
+	public function order()
+	{
+		$data['title']	= 'My Order';
 		$id_pelanggan = $this->session->userdata('id_pelanggan');
 		$this->db->select('*');
 		$this->db->from('tb_order');
@@ -75,11 +85,12 @@ class DashboardPelanggan extends CI_Controller {
 		
 	} 
 
-	public function tambah_order()
+	public function tambah_order($id_produk = null)
 	{
 		$this->validation_order();
 		if (!$this->form_validation->run()) {
 			$data['title']		= 'Data Order';
+			$data['id_produk'] = $id_produk;
 			$data['produk']		= $this->M_produk->get_data()->result_array();
 			$data['nama_pelanggan'] = $this->session->userdata('nama_pelanggan');
 			$this->load->view('pelanggan-page/order/tambah', $data);

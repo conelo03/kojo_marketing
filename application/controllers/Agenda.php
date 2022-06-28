@@ -99,6 +99,8 @@ class Agenda extends CI_Controller {
 	{
     $data['title']		= 'Data Agenda';
 		$data['id_agenda'] = $id_agenda;
+		$data['tgl_sekarang'] = date('Y-m-d');
+		$data['a']	= $this->M_agenda->get_by_id($id_agenda);
 		$data['agenda']	= $this->M_detail_agenda->get_data($id_agenda)->result_array();
 		$this->load->view('detail-agenda/data', $data);
 	}

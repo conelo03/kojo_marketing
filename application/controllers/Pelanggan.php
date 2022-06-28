@@ -36,6 +36,7 @@ class Pelanggan extends CI_Controller {
 				'jenis_kelamin'		=> $data['jenis_kelamin'],
 				'no_telepon'		=> $data['no_telepon'],
 				'alamat'		=> $data['alamat'],
+				'id_kota'		=> $data['id_kota'],
 				'instansi'		=> $data['instansi'],
 				'username'		=> $data['username'],
 				'password'		=> password_hash($data['password'], PASSWORD_DEFAULT),
@@ -68,6 +69,7 @@ class Pelanggan extends CI_Controller {
 					'jenis_kelamin'		=> $data['jenis_kelamin'],
 					'no_telepon'		=> $data['no_telepon'],
 					'alamat'		=> $data['alamat'],
+					'id_kota'		=> $data['id_kota'],
 					'instansi'		=> $data['instansi'],
 					'username'		=> $data['username'],
 					'password'		=> password_hash($data['password'], PASSWORD_DEFAULT),
@@ -79,6 +81,7 @@ class Pelanggan extends CI_Controller {
 					'jenis_kelamin'		=> $data['jenis_kelamin'],
 					'no_telepon'		=> $data['no_telepon'],
 					'alamat'		=> $data['alamat'],
+					'id_kota'		=> $data['id_kota'],
 					'instansi'		=> $data['instansi'],
 					'username'		=> $data['username'],
 				];
@@ -107,6 +110,7 @@ class Pelanggan extends CI_Controller {
 		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
 		$this->form_validation->set_rules('no_telepon', 'No Telepon', 'required|trim');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+		$this->form_validation->set_rules('id_kota', 'Kota', 'required|trim');
 		$this->form_validation->set_rules('instansi', 'Instansi', 'required|trim');
 		$this->form_validation->set_rules('password', 'Password', 'trim');
 		$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');

@@ -17,7 +17,10 @@
             <div class="card-header">
               <h4>Data Hasil Kegiatan</h4>
               <div class="card-header-action">
-                <a href="<?= base_url('tambah-detail-agenda/'.$id_agenda);?>" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Data</a>
+                <?php if ($tgl_sekarang > $a['tenggat_agenda']) { ?>
+                  <a href="<?= base_url('tambah-detail-agenda/'.$id_agenda);?>" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Data</a>
+                <?php } ?>
+                
               </div>
             </div>
             <div class="card-body">
@@ -42,8 +45,11 @@
                       <td><?= $u['tautan'];?></td>
                       <td><?= $u['keterangan'];?></td>
                       <td class="text-center">
-                        <a href="<?= base_url('edit-detail-agenda/'.$id_agenda.'/'.$u['id_detail_agenda']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
-                        <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-detail-agenda/'.$id_agenda.'/'.$u['id_detail_agenda']); ?>';"><i class="fa fa-trash"></i> Delete</button>
+                        <?php if ($tgl_sekarang > $a['tenggat_agenda']) { ?>
+                          <a href="<?= base_url('edit-detail-agenda/'.$id_agenda.'/'.$u['id_detail_agenda']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
+                          <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-detail-agenda/'.$id_agenda.'/'.$u['id_detail_agenda']); ?>';"><i class="fa fa-trash"></i> Delete</button>
+                        <?php } ?>
+                        
                       </td>
                     </tr>
                     <?php endforeach;?>

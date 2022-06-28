@@ -19,29 +19,33 @@ class LoginPelanggan extends CI_Controller {
 	{
 		$username = htmlspecialchars($this->input->post('username', true));
 		$password = htmlspecialchars($this->input->post('password', true));
-		
-		$user = $this->login->get_pelanggan($username);
-		if($user->num_rows() > 0)
-		{
-			$get_user = $user->row_array();
-			if(password_verify($password, $get_user['password']))
+		if(!empty($username)){
+			$user = $this->login->get_pelanggan($username);
+			if($user->num_rows() > 0)
 			{
-				$this->session->set_userdata('login', TRUE);
-				$this->session->set_userdata('id_pelanggan', $get_user['id_pelanggan']);
-				$this->session->set_userdata('nama_pelanggan', $get_user['nama_pelanggan']);
-				$this->session->set_userdata('username', $get_user['username']);
-				redirect('dashboard-pelanggan');
-			}
+				$get_user = $user->row_array();
+				if(password_verify($password, $get_user['password']))
+				{
+					$this->session->set_userdata('login', TRUE);
+					$this->session->set_userdata('id_pelanggan', $get_user['id_pelanggan']);
+					$this->session->set_userdata('nama_pelanggan', $get_user['nama_pelanggan']);
+					$this->session->set_userdata('username', $get_user['username']);
+					redirect('dashboard-pelanggan');
+				}
+				else 
+				{
+					set_pesan('Username atau password salah', false);
+					redirect('LoginPelanggan');
+				}
+			} 
 			else 
 			{
-				set_pesan('Username atau password salah', false);
-				redirect('');
+				set_pesan('Username tidak terdaftar', false);
+				redirect('LoginPelanggan');
 			}
-		} 
-		else 
-		{
-			set_pesan('Username tidak terdaftar', false);
-			redirect('');
+		}else{
+			set_pesan('Silahkan Login', false);
+			redirect('LoginPelanggan');
 		}
 	}
 
@@ -52,6 +56,6 @@ class LoginPelanggan extends CI_Controller {
 		$this->session->unset_userdata('nama_pelanggan');
 		$this->session->unset_userdata('username');
 		set_pesan('Anda telah keluar', true);
-		redirect('');
+		redirect('login-pelanggan');
 	}
 }

@@ -49,15 +49,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'LoginPelanggan';
+$route['default_controller'] = 'HomePelanggan';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['home-pelanggan']				= 'HomePelanggan';
+$route['registrasi-pelanggan']				= 'HomePelanggan/registrasi';
 
 //pelanggan
 $route['login-pelanggan'] 				= 'LoginPelanggan/proses';
 $route['logout-pelanggan'] 				= 'LoginPelanggan/logout';
 $route['dashboard-pelanggan']				= 'DashboardPelanggan';
+$route['my-order'] 	        = 'DashboardPelanggan/order';
 $route['riwayat-order'] 	        = 'DashboardPelanggan/riwayat_order';
+$route['tambah-order-pelanggan/(:any)'] 	        = 'DashboardPelanggan/tambah_order/$1';
 $route['tambah-order-pelanggan'] 	        = 'DashboardPelanggan/tambah_order';
 $route['edit-order-pelanggan/(:any)'] 	    = 'DashboardPelanggan/edit_order/$1';
 $route['hapus-order-pelanggan/(:any)']    	= 'DashboardPelanggan/hapus_order/$1';

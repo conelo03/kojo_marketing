@@ -37,7 +37,7 @@
                     <select name="id_produk" class="form-control" id="select-produk" data-live-search="true">
                       <option disabled="" selected="">-- Pilih Produk --</option>
                       <?php foreach ($produk as $key) { ?>
-                        <option value="<?= $key['id_produk'] ?>" <?= set_value('id_produk') == $key['id_produk'] ? 'selected' : '' ?>><?= $key['nama_produk'] ?> - <?= $key['jenis_produk'] ?></option>
+                        <option value="<?= $key['id_produk'] ?>" <?= set_value('id_produk', $id_produk) == $key['id_produk'] ? 'selected' : '' ?>><?= $key['nama_produk'] ?> - <?= $key['jenis_produk'] ?></option>
                       <?php } ?>
                     </select>
                     <?= form_error('id_produk', '<span class="text-danger small">', '</span>'); ?>

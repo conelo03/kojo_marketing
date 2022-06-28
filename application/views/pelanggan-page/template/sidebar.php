@@ -11,7 +11,8 @@
           <i class="fas fa-ellipsis-v"></i>
         </a>
         <ul class="navbar-nav">
-          <li class="nav-item <?= $title == 'Dashboard' ? 'active' : '' ?>"><a href="<?= base_url('dashboard-pelanggan') ?>" class="nav-link">Home</a></li>
+          <li class="nav-item <?= $title == 'Home' ? 'active' : '' ?>"><a href="<?= base_url('dashboard-pelanggan') ?>" class="nav-link">Home</a></li>
+          <li class="nav-item <?= $title == 'My Order' ? 'active' : '' ?>"><a href="<?= base_url('my-order') ?>" class="nav-link">My Order</a></li>
           <li class="nav-item <?= $title == 'Riwayat Order' ? 'active' : '' ?>"><a href="<?= base_url('riwayat-order') ?>" class="nav-link">Riwayat Order</a></li>
         </ul>
       </div>

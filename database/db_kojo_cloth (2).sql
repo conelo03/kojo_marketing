@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2022 at 01:36 PM
+-- Generation Time: Jun 28, 2022 at 11:16 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.2.33
 
@@ -44,7 +44,8 @@ CREATE TABLE `tb_agenda` (
 
 INSERT INTO `tb_agenda` (`id_agenda`, `nama_agenda`, `tanggal_agenda`, `tenggat_agenda`, `tempat`, `waktu`, `keterangan`) VALUES
 (2, 'tesss', '2022-12-31', '2022-12-31', 'tess', 'tess', 'tess'),
-(3, 'a', '2022-12-31', '2022-12-31', 'a', 'a', 'aa');
+(3, 'a', '2022-12-31', '2022-12-31', 'a', 'a', 'aa'),
+(4, 'promosi di alun-alun', '2022-06-19', '2022-06-19', 'alun-alun', '9', 'cfd');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,7 @@ INSERT INTO `tb_akun` (`id_akun`, `id_pegawai`, `username`, `password`, `role`) 
 (7, 9, 'purchase', '$2y$10$yhqIod5blD9Pzl/bIu.x8.pRp3SSo7PKrF2qu1Y4ipqYB4bV/IK5y', 'Purchase'),
 (8, 10, 'produksi', '$2y$10$CKedfoqqyLpiJ5moxl.HJe6E1RGN2/euvO6fbfdB4bTGEpBpwCVvG', 'Marketing,Kepala Produksi'),
 (9, 11, 'k_marketing', '$2y$10$CMAAJtm5CCvnalCvjruSfeCJn/PktC2MOKJb22.mJRcTXlXIPPq0.', 'Kepala Marketing'),
-(10, 13, 'direktur', '$2y$10$jb4wlIDVfKlV8XmQeuMmcObYaTRe1vJ074GRQS6uBQeJU59t9F/oW', 'Owner');
+(10, 13, 'ceo', '$2y$10$mnSdtsN.wV68jAxMyDWxNuoBd/5EQsbbI8aZbnM1OrfkQVjkybXFm', 'Owner');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,9 @@ CREATE TABLE `tb_bordir` (
 INSERT INTO `tb_bordir` (`id_bordir`, `id_order`, `id_pegawai`, `file_bordir`, `catatan_bordir`, `status_bordir`, `updated_at`) VALUES
 (1, 4, 1, '5533-15688-1-PB.pdf', 'tes bordir', 2, '2022-04-21 23:25:31'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:30:53'),
-(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32'),
+(4, 8, 1, '', '', 2, '2022-06-17 13:33:33'),
+(5, 9, 10, '', '', 2, '2022-06-17 14:59:09');
 
 -- --------------------------------------------------------
 
@@ -121,7 +124,9 @@ CREATE TABLE `tb_cutting` (
 INSERT INTO `tb_cutting` (`id_cutting`, `id_order`, `id_pegawai`, `file_cutting`, `catatan_cutting`, `status_cutting`, `updated_at`) VALUES
 (1, 4, 1, '3785-12590-1-PB.pdf', 'tes cutting', 4, '2022-04-22 23:20:30'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:30:47'),
-(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(3, 6, 10, '', '', 0, '2022-06-22 20:01:04'),
+(4, 8, 10, 'AFRAHJPG.jpg', 'segera', 4, '2022-06-17 13:26:07'),
+(5, 9, 10, '', '', 4, '2022-06-17 14:57:45');
 
 -- --------------------------------------------------------
 
@@ -168,11 +173,7 @@ CREATE TABLE `tb_detail_gaji` (
 INSERT INTO `tb_detail_gaji` (`id_detail_gaji`, `id_gaji`, `id_pegawai`, `gaji_pokok`, `bonus`, `kasbon`, `total`, `keterangan`) VALUES
 (2, 1, 8, 3000000, 0, 0, 3000000, '-'),
 (3, 1, 4, 2700000, 0, 100000, 2600000, '-'),
-(4, 2, 4, 3000000, 200000, 0, 3200000, '-'),
-(5, 2, 8, 3000000, 250000, 50000, 3200000, '-'),
-(6, 2, 9, 2000000, 100000, 0, 2100000, '-'),
-(7, 2, 10, 4000000, 400000, 0, 4400000, '-'),
-(8, 2, 11, 3700000, 300000, 200000, 3800000, '-');
+(4, 3, 1, 3000000, 300000, 0, 3300000, '-');
 
 -- --------------------------------------------------------
 
@@ -195,7 +196,11 @@ CREATE TABLE `tb_detail_gaji_produksi` (
 
 INSERT INTO `tb_detail_gaji_produksi` (`id_detail_gaji_produksi`, `id_gaji_produksi`, `id_pegawai`, `jumlah`, `kasbon`, `total`) VALUES
 (7, 4, 5, 59000, 2000, 57000),
-(8, 4, 12, 78000, 50, 77950);
+(8, 4, 12, 78000, 50, 77950),
+(9, 5, 5, 250000, 1000, 249000),
+(10, 6, 5, 14000, 0, 14000),
+(11, 6, 6, 15000, 0, 15000),
+(12, 6, 7, 3000, 0, 3000);
 
 -- --------------------------------------------------------
 
@@ -217,7 +222,7 @@ CREATE TABLE `tb_gaji` (
 
 INSERT INTO `tb_gaji` (`id_gaji`, `tanggal`, `keterangan`, `jumlah`, `status`) VALUES
 (1, '2022-06-02', 'Gaji Karyawan', 5600000, 1),
-(2, '2022-06-15', 'Gaji Karyawan Manajerial', 16700000, 0);
+(3, '2022-06-15', 'Gaji Karyawan', 3300000, 1);
 
 -- --------------------------------------------------------
 
@@ -238,7 +243,9 @@ CREATE TABLE `tb_gaji_produksi` (
 --
 
 INSERT INTO `tb_gaji_produksi` (`id_gaji_produksi`, `tanggal_pencairan`, `jumlah`, `keterangan`, `status`) VALUES
-(4, '2022-04-23', 134950, 'Gaji Mingguan Produksi', 2);
+(4, '2022-04-23', 134950, 'Gaji Mingguan Produksi', 2),
+(5, '2022-06-17', 249000, 'gaji cutting', 2),
+(6, '2022-06-18', 32000, 'gaji', 2);
 
 -- --------------------------------------------------------
 
@@ -263,7 +270,9 @@ CREATE TABLE `tb_jahit` (
 INSERT INTO `tb_jahit` (`id_jahit`, `id_order`, `id_pegawai`, `file_jahit`, `catatan_jahit`, `status_jahit`, `updated_at`) VALUES
 (1, 4, 1, '5533-15688-1-PB.pdf', 'tes jahit', 4, '2022-04-22 23:20:38'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:30:57'),
-(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32'),
+(4, 8, 10, '', '', 4, '2022-06-17 13:31:39'),
+(5, 9, 10, '', '', 4, '2022-06-17 15:05:01');
 
 -- --------------------------------------------------------
 
@@ -300,7 +309,8 @@ CREATE TABLE `tb_jenis_pengeluaran` (
 
 INSERT INTO `tb_jenis_pengeluaran` (`id_jenis_pengeluaran`, `jenis_pengeluaran`) VALUES
 (1, 'HPP'),
-(2, 'Beban Gaji');
+(2, 'Beban Gaji'),
+(3, 'Beban Lain-lain');
 
 -- --------------------------------------------------------
 
@@ -325,7 +335,9 @@ CREATE TABLE `tb_keuangan` (
 INSERT INTO `tb_keuangan` (`id_keuangan`, `id_order`, `id_pegawai`, `file_keuangan`, `catatan_keuangan`, `status_keuangan`, `updated_at`) VALUES
 (2, 4, 1, '5533-15688-1-PB.pdf', 'cefat', 4, '2022-04-22 23:20:16'),
 (3, 5, 1, '', '', 0, '2022-04-27 17:30:37'),
-(4, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(4, 6, 1, '', '', 4, '2022-06-28 17:08:30'),
+(5, 8, 1, '', '', 4, '2022-06-17 13:22:49'),
+(6, 9, 0, NULL, NULL, 0, '2022-06-17 14:47:25');
 
 -- --------------------------------------------------------
 
@@ -861,6 +873,7 @@ CREATE TABLE `tb_order` (
   `design_order` text,
   `catatan` text NOT NULL,
   `status_order` int(11) DEFAULT NULL,
+  `progres` varchar(100) DEFAULT NULL,
   `id_pegawai` int(11) DEFAULT NULL,
   `rate` int(1) DEFAULT NULL,
   `ulasan` text,
@@ -871,10 +884,13 @@ CREATE TABLE `tb_order` (
 -- Dumping data for table `tb_order`
 --
 
-INSERT INTO `tb_order` (`id_order`, `tgl_order`, `id_pelanggan`, `id_produk`, `jumlah_ukuran_s`, `jumlah_ukuran_m`, `jumlah_ukuran_l`, `jumlah_ukuran_xl`, `jumlah_ukuran_xxl`, `design_order`, `catatan`, `status_order`, `id_pegawai`, `rate`, `ulasan`, `created_at`) VALUES
-(4, '2022-04-21', 1, 2, 5, 5, 5, 5, 5, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'catatan', 4, 4, 3, 'ulasan tes', '2022-04-21 21:28:27'),
-(5, '2022-04-21', 2, 2, 5, 4, 5, 5, 6, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'xxx', 0, 0, NULL, NULL, '2022-04-22 23:49:02'),
-(6, '2022-05-29', 1, 3, 5, 6, 7, 3, 1, 'aj_(2).jpeg', 'tidak ada', 0, 10, NULL, NULL, '2022-05-29 21:13:32');
+INSERT INTO `tb_order` (`id_order`, `tgl_order`, `id_pelanggan`, `id_produk`, `jumlah_ukuran_s`, `jumlah_ukuran_m`, `jumlah_ukuran_l`, `jumlah_ukuran_xl`, `jumlah_ukuran_xxl`, `design_order`, `catatan`, `status_order`, `progres`, `id_pegawai`, `rate`, `ulasan`, `created_at`) VALUES
+(4, '2022-04-21', 1, 2, 5, 5, 5, 5, 5, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'catatan', 4, '', 4, 2, 'ulasan tes', '2022-04-21 21:28:27'),
+(5, '2022-04-21', 2, 2, 5, 4, 5, 5, 6, 'WhatsApp_Image_2022-01-12_at_18_59_35.jpeg', 'xxx', 0, '', 0, NULL, NULL, '2022-04-22 23:49:02'),
+(6, '2022-05-29', 1, 3, 5, 6, 7, 3, 1, 'aj_(2).jpeg', 'tidak ada', 4, 'Pengiriman - Selesai', 10, NULL, NULL, '2022-05-29 21:13:32'),
+(7, '2022-06-14', 1, 2, 1, 1, 1, 1, 1, 'jimen_ajah_23_7_2017_14_40_40_193.jpg', '-', 0, '', 0, NULL, NULL, '2022-06-14 20:50:10'),
+(8, '2022-06-17', 1, 3, 20, 20, 20, 20, 10, 'WEBYJPG.jpg', 'segera', 4, '', 1, 4, 'madep', '2022-06-17 13:19:21'),
+(9, '2022-06-17', 1, 3, 3, 5, 2, 3, 1, 'Virtual_Background_Tema_Biru_Terbuka.jpg', 'abcd', 4, '', 1, 5, 'good job', '2022-06-17 14:45:44');
 
 -- --------------------------------------------------------
 
@@ -900,17 +916,17 @@ CREATE TABLE `tb_pegawai` (
 --
 
 INSERT INTO `tb_pegawai` (`id_pegawai`, `nip`, `nama`, `jabatan`, `alamat`, `tempat_lahir`, `tanggal_lahir`, `jenis_kelamin`, `gaji_pokok`, `foto`) VALUES
-(1, '12345', 'admin', 'Administrator', 'subangg', 'subang', '2022-03-01', 'Laki-laki', 3000000, 'user.png'),
-(4, '1232425323', 'Pegawai Marketing', 'Staff Marketing', 'tess', 'tess', '2022-12-31', 'Laki-laki', 3000000, 'aj_(2)7.jpeg'),
+(1, '12345', 'administrator', 'Administrator', 'subangg', 'subang', '2022-03-01', 'Laki-laki', 3000000, 'user.png'),
+(4, 'tess', 'tess', 'Staff Marketing', 'tess', 'tess', '2022-12-31', 'Laki-laki', 0, 'aj_(2)7.jpeg'),
 (5, '123', 'tes cutting', 'Pegawai Cutting', 'tes', 'tes', '2022-04-21', 'Laki-laki', 0, 'aj_(2).jpeg'),
 (6, '123', 'tes pegawai jahit', 'Pegawai Jahit', 'bandun', 'bandung', '2022-04-22', 'Laki-laki', 0, 'aj_(2)1.jpeg'),
 (7, '123', 'tes pegawai qc', 'Pegawai QC', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 0, 'aj_(2)2.jpeg'),
-(8, '123', 'Pegawai Keuangan', 'Staff Keuangan', 'subang', 'subang', '2022-12-31', 'Laki-laki', 3000000, 'aj_(2)3.jpeg'),
-(9, '123', 'Pegawai Purchase', 'Staff Purchase', 'subang', 'subang', '2022-12-31', 'Laki-laki', 2000000, 'aj_(2)4.jpeg'),
-(10, '123', 'Kepala Produksi', 'Kepala Produksi', 'subang', 'subang', '2022-12-31', 'Laki-laki', 4000000, 'aj_(2)5.jpeg'),
-(11, '123', 'Kepala Marketing', 'Kepala Marketing', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 3700000, 'aj_(2)6.jpeg'),
+(8, '123', 'Pegawai Keuangan', 'Staff Keuangan', 'subang', 'subang', '2022-12-31', 'Laki-laki', 0, 'aj_(2)3.jpeg'),
+(9, '123', 'Pegawai Purchase', 'Staff Purchase', 'subang', 'subang', '2022-12-31', 'Laki-laki', 0, 'aj_(2)4.jpeg'),
+(10, '123', 'Kepala Produksi', 'Kepala Produksi', 'subang', 'subang', '2022-12-31', 'Laki-laki', 0, 'aj_(2)5.jpeg'),
+(11, '123', 'Kepala Marketing', 'Kepala Marketing', 'bandung', 'bandung', '2022-12-31', 'Laki-laki', 0, 'aj_(2)6.jpeg'),
 (12, '21413', 'Pagawai produksi', 'Produksi', 'Bandung', 'bandung', '2021-12-31', 'Laki-laki', 0, 'aj_(2)6.jpeg'),
-(13, '111', 'Direktur', 'Direktur', 'Bandung', 'Bandung', '2022-12-31', 'Laki-laki', 5000000, 'aj_(2)11.jpeg');
+(13, '24536576', 'CEO', 'CEO', 'bdg', 'bdg', '2022-06-21', 'Laki-laki', 1300000, 'edit.JPG');
 
 -- --------------------------------------------------------
 
@@ -939,7 +955,9 @@ CREATE TABLE `tb_pegawai_cutting` (
 INSERT INTO `tb_pegawai_cutting` (`id_pegawai_cutting`, `id_order`, `id_pegawai`, `jumlah`, `harga`, `kasbon`, `tgl_cair`, `pola_potongan`, `detail_ukuran`, `catatan_potongan`, `created_at`) VALUES
 (1, 4, 5, 7, 5000, 2000, '2022-04-23', 'tess', 'tess', 'tess', '2022-04-21 23:12:08'),
 (2, 4, 12, 1, 2000, 50, '2022-04-23', '1', '1', '-', '2022-06-03 19:16:46'),
-(3, 6, 12, 12, 5000, 0, '2022-04-23', '1', '1', '-', '2022-06-03 19:52:30');
+(3, 6, 12, 12, 5000, 0, '2022-04-23', '1', '1', '-', '2022-06-03 19:52:30'),
+(4, 8, 5, 50, 5000, 1000, '2022-06-17', '12345', '200', 'tidak ada', '2022-06-17 13:26:48'),
+(5, 9, 5, 14, 1000, 0, '2022-06-18', 'ac', 'qw', 'raglan', '2022-06-17 14:57:07');
 
 -- --------------------------------------------------------
 
@@ -966,7 +984,9 @@ CREATE TABLE `tb_pegawai_jahit` (
 
 INSERT INTO `tb_pegawai_jahit` (`id_pegawai_jahit`, `id_order`, `id_pegawai`, `jumlah`, `harga`, `kasbon`, `tgl_cair`, `ukuran_pendek`, `ukuran_panjang`, `created_at`) VALUES
 (1, 4, 5, 4, 1000, 0, '2022-04-23', '12', '12', '2022-04-22 23:12:40'),
-(2, 4, 12, 2, 5000, 0, '2022-04-23', '1', '1', '2022-06-03 19:17:22');
+(2, 4, 12, 2, 5000, 0, '2022-04-23', '1', '1', '2022-06-03 19:17:22'),
+(3, 8, 6, 30, 10000, 2000, '2022-06-17', '20', '10', '2022-06-17 13:31:30'),
+(4, 9, 6, 3, 5000, 0, '2022-06-18', 'S', '0', '2022-06-17 15:04:20');
 
 -- --------------------------------------------------------
 
@@ -993,7 +1013,9 @@ CREATE TABLE `tb_pegawai_qc` (
 
 INSERT INTO `tb_pegawai_qc` (`id_pegawai_qc`, `id_order`, `id_pegawai`, `jumlah`, `harga`, `kasbon`, `tgl_cair`, `ukuran_pendek`, `ukuran_panjang`, `created_at`) VALUES
 (1, 4, 5, 2, 10000, 0, '2022-04-23', '12', '12', '2022-04-22 23:19:21'),
-(2, 4, 12, 3, 2000, 0, '2022-04-23', '1', '1', '2022-06-03 19:17:58');
+(2, 4, 12, 3, 2000, 0, '2022-04-23', '1', '1', '2022-06-03 19:17:58'),
+(3, 8, 7, 20, 10000, 1000, '2022-06-17', '10', '10', '2022-06-17 13:32:12'),
+(4, 9, 7, 3, 1000, 0, '2022-06-18', 'S', '0', '2022-06-17 15:07:24');
 
 -- --------------------------------------------------------
 
@@ -1043,9 +1065,7 @@ CREATE TABLE `tb_pemasukan` (
 INSERT INTO `tb_pemasukan` (`id_pemasukan`, `tanggal`, `id_jenis_pemasukan`, `keterangan`, `referensi`, `jumlah`) VALUES
 (1, '2022-06-01', 1, 'Order 1', 'tes', 1200000),
 (2, '2022-06-02', 1, 'Order 2', 'ref 2', 2500000),
-(3, '2022-07-01', 1, '1', '1', 1),
-(4, '2021-06-02', 1, '1', '1', 1),
-(5, '2022-06-21', 1, 'Pembayaran Order Jaket - PT. XYZ', '-', 2000000);
+(6, '2022-06-30', 1, 'Pembayaran Order Jaket - PT. XYZ', '-', 100);
 
 -- --------------------------------------------------------
 
@@ -1068,7 +1088,7 @@ CREATE TABLE `tb_pendapatan_order` (
 --
 
 INSERT INTO `tb_pendapatan_order` (`id_pendapatan_order`, `id_order`, `id_pegawai`, `tanggal`, `jumlah`, `keterangan`, `status`) VALUES
-(1, 4, 4, '2022-06-21', 2000000, 'Pembayaran Order Jaket - PT. XYZ', 1);
+(3, 4, 4, '2022-06-30', 100, 'Pembayaran Order Jaket - PT. XYZ', 1);
 
 -- --------------------------------------------------------
 
@@ -1091,8 +1111,7 @@ CREATE TABLE `tb_pengajuan` (
 --
 
 INSERT INTO `tb_pengajuan` (`id_pengajuan`, `id_jenis_pengeluaran`, `tanggal`, `keterangan`, `jumlah`, `id_pegawai`, `status`) VALUES
-(1, 1, '2022-06-21', 'Kasbon', 100000, 10, 2),
-(2, 1, '2022-06-21', 'Kasbon AB', 100000, 1, 2);
+(4, 1, '2022-06-23', 'beli bahan', 5, 9, 2);
 
 -- --------------------------------------------------------
 
@@ -1118,8 +1137,10 @@ INSERT INTO `tb_pengeluaran` (`id_pengeluaran`, `tanggal`, `id_jenis_pengeluaran
 (2, '2022-06-01', 1, 'HPP Order 2', 'Ref 2', 2000000),
 (5, '2022-06-02', 2, 'Gaji Karyawan', '-', 5600000),
 (7, '2022-04-23', 2, 'Gaji Mingguan Produksi', '-', 134950),
-(8, '2022-06-21', 1, 'Kasbon', '-', 100000),
-(9, '2022-06-21', 1, 'Kasbon AB', '-', 100000);
+(9, '2022-06-15', 2, 'Gaji Karyawan', '-', 3300000),
+(10, '2022-06-17', 2, 'gaji cutting', '-', 249000),
+(11, '2022-06-18', 2, 'gaji', '-', 32000),
+(12, '2022-06-23', 1, 'beli bahan', '-', 5);
 
 -- --------------------------------------------------------
 
@@ -1144,7 +1165,9 @@ CREATE TABLE `tb_pengiriman` (
 INSERT INTO `tb_pengiriman` (`id_pengiriman`, `id_order`, `id_pegawai`, `file_pengiriman`, `catatan_pengiriman`, `status_pengiriman`, `updated_at`) VALUES
 (1, 4, 1, '5533-15688-1-PB.pdf', 'tes kirim', 4, '2022-04-22 23:20:53'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:31:05'),
-(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(3, 6, 1, '', '', 4, '2022-06-22 20:03:03'),
+(4, 8, 10, '', '', 4, '2022-06-17 13:32:33'),
+(5, 9, 10, '', '', 4, '2022-06-17 15:31:48');
 
 -- --------------------------------------------------------
 
@@ -1221,7 +1244,9 @@ CREATE TABLE `tb_purchase` (
 INSERT INTO `tb_purchase` (`id_purchase`, `id_order`, `id_pegawai`, `file_purchase`, `catatan_purchase`, `status_purchase`, `updated_at`) VALUES
 (2, 4, 1, '7__SOAL_UAS-STATISTIKA_SOSIAL-PRODY_NEGARA_KARYAWAN_P2K.pdf', 'tes', 4, '2022-04-22 23:20:23'),
 (3, 5, 1, '', '', 0, '2022-04-27 17:30:42'),
-(4, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(4, 6, 1, '', '', 4, '2022-06-28 17:13:50'),
+(5, 8, 1, 'AFRAHJPG.jpg', 'segera', 4, '2022-06-17 13:23:50'),
+(6, 9, 0, NULL, NULL, 0, '2022-06-17 14:47:25');
 
 -- --------------------------------------------------------
 
@@ -1246,7 +1271,9 @@ CREATE TABLE `tb_qc` (
 INSERT INTO `tb_qc` (`id_qc`, `id_order`, `id_pegawai`, `file_qc`, `catatan_qc`, `status_qc`, `updated_at`) VALUES
 (1, 4, 1, '5533-15688-1-PB.pdf', 'tes qc', 4, '2022-04-22 23:20:47'),
 (2, 5, 1, '', '', 0, '2022-04-27 17:31:01'),
-(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32');
+(3, 6, 0, NULL, NULL, 0, '2022-05-29 21:13:32'),
+(4, 8, 10, '', '', 4, '2022-06-17 13:32:23'),
+(5, 9, 10, '', '', 4, '2022-06-17 15:07:40');
 
 -- --------------------------------------------------------
 
@@ -1270,7 +1297,65 @@ CREATE TABLE `tb_rekapitulasi` (
 
 INSERT INTO `tb_rekapitulasi` (`id_rekapitulasi`, `id_pelanggan`, `jas`, `jaket`, `kaos`, `kemeja`, `sweater`) VALUES
 (1, 1, 0, 25, 0, 0, 0),
-(2, 2, 0, 25, 0, 0, 0);
+(2, 2, 0, 25, 0, 0, 0),
+(3, 1, 0, 25, 0, 0, 0),
+(4, 2, 0, 25, 0, 0, 0),
+(5, 1, 0, 25, 0, 0, 0),
+(6, 2, 0, 25, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_upah_cutting`
+--
+
+CREATE TABLE `tb_upah_cutting` (
+  `id_upah_cutting` int(11) NOT NULL,
+  `upah_cutting` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_upah_cutting`
+--
+
+INSERT INTO `tb_upah_cutting` (`id_upah_cutting`, `upah_cutting`) VALUES
+(1, 5000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_upah_jahit`
+--
+
+CREATE TABLE `tb_upah_jahit` (
+  `id_upah_jahit` int(11) NOT NULL,
+  `upah_jahit` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_upah_jahit`
+--
+
+INSERT INTO `tb_upah_jahit` (`id_upah_jahit`, `upah_jahit`) VALUES
+(1, 10000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_upah_qc`
+--
+
+CREATE TABLE `tb_upah_qc` (
+  `id_upah_qc` int(11) NOT NULL,
+  `upah_qc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_upah_qc`
+--
+
+INSERT INTO `tb_upah_qc` (`id_upah_qc`, `upah_qc`) VALUES
+(1, 5000);
 
 --
 -- Indexes for dumped tables
@@ -1451,6 +1536,24 @@ ALTER TABLE `tb_rekapitulasi`
   ADD PRIMARY KEY (`id_rekapitulasi`);
 
 --
+-- Indexes for table `tb_upah_cutting`
+--
+ALTER TABLE `tb_upah_cutting`
+  ADD PRIMARY KEY (`id_upah_cutting`);
+
+--
+-- Indexes for table `tb_upah_jahit`
+--
+ALTER TABLE `tb_upah_jahit`
+  ADD PRIMARY KEY (`id_upah_jahit`);
+
+--
+-- Indexes for table `tb_upah_qc`
+--
+ALTER TABLE `tb_upah_qc`
+  ADD PRIMARY KEY (`id_upah_qc`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1458,7 +1561,7 @@ ALTER TABLE `tb_rekapitulasi`
 -- AUTO_INCREMENT for table `tb_agenda`
 --
 ALTER TABLE `tb_agenda`
-  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_agenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_akun`
@@ -1470,13 +1573,13 @@ ALTER TABLE `tb_akun`
 -- AUTO_INCREMENT for table `tb_bordir`
 --
 ALTER TABLE `tb_bordir`
-  MODIFY `id_bordir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_bordir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_cutting`
 --
 ALTER TABLE `tb_cutting`
-  MODIFY `id_cutting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cutting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_agenda`
@@ -1488,31 +1591,31 @@ ALTER TABLE `tb_detail_agenda`
 -- AUTO_INCREMENT for table `tb_detail_gaji`
 --
 ALTER TABLE `tb_detail_gaji`
-  MODIFY `id_detail_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_detail_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_detail_gaji_produksi`
 --
 ALTER TABLE `tb_detail_gaji_produksi`
-  MODIFY `id_detail_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_detail_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_gaji`
 --
 ALTER TABLE `tb_gaji`
-  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_gaji` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_gaji_produksi`
 --
 ALTER TABLE `tb_gaji_produksi`
-  MODIFY `id_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_gaji_produksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_jahit`
 --
 ALTER TABLE `tb_jahit`
-  MODIFY `id_jahit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jahit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_jenis_pemasukan`
@@ -1524,13 +1627,13 @@ ALTER TABLE `tb_jenis_pemasukan`
 -- AUTO_INCREMENT for table `tb_jenis_pengeluaran`
 --
 ALTER TABLE `tb_jenis_pengeluaran`
-  MODIFY `id_jenis_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_jenis_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_keuangan`
 --
 ALTER TABLE `tb_keuangan`
-  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_keuangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_kota`
@@ -1542,7 +1645,7 @@ ALTER TABLE `tb_kota`
 -- AUTO_INCREMENT for table `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tb_pegawai`
@@ -1554,19 +1657,19 @@ ALTER TABLE `tb_pegawai`
 -- AUTO_INCREMENT for table `tb_pegawai_cutting`
 --
 ALTER TABLE `tb_pegawai_cutting`
-  MODIFY `id_pegawai_cutting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pegawai_cutting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_pegawai_jahit`
 --
 ALTER TABLE `tb_pegawai_jahit`
-  MODIFY `id_pegawai_jahit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pegawai_jahit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_pegawai_qc`
 --
 ALTER TABLE `tb_pegawai_qc`
-  MODIFY `id_pegawai_qc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pegawai_qc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_pelanggan`
@@ -1578,31 +1681,31 @@ ALTER TABLE `tb_pelanggan`
 -- AUTO_INCREMENT for table `tb_pemasukan`
 --
 ALTER TABLE `tb_pemasukan`
-  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pemasukan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_pendapatan_order`
 --
 ALTER TABLE `tb_pendapatan_order`
-  MODIFY `id_pendapatan_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pendapatan_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tb_pengajuan`
 --
 ALTER TABLE `tb_pengajuan`
-  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengajuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tb_pengeluaran`
 --
 ALTER TABLE `tb_pengeluaran`
-  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pengeluaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tb_pengiriman`
 --
 ALTER TABLE `tb_pengiriman`
-  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_produk`
@@ -1614,19 +1717,37 @@ ALTER TABLE `tb_produk`
 -- AUTO_INCREMENT for table `tb_purchase`
 --
 ALTER TABLE `tb_purchase`
-  MODIFY `id_purchase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_purchase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tb_qc`
 --
 ALTER TABLE `tb_qc`
-  MODIFY `id_qc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_qc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_rekapitulasi`
 --
 ALTER TABLE `tb_rekapitulasi`
-  MODIFY `id_rekapitulasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_rekapitulasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tb_upah_cutting`
+--
+ALTER TABLE `tb_upah_cutting`
+  MODIFY `id_upah_cutting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_upah_jahit`
+--
+ALTER TABLE `tb_upah_jahit`
+  MODIFY `id_upah_jahit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tb_upah_qc`
+--
+ALTER TABLE `tb_upah_qc`
+  MODIFY `id_upah_qc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -69,7 +69,57 @@
         </div>
       </div>
     </div>
-	<?php endif;?>
+	  <?php endif;?>
+
+    <?php if(is_admin() || is_marketing() || is_k_marketing()):?>
+    <div class="section-body">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Data Agenda yang Berjalan</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-striped" id="datatables-pegawai">
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>Nama Kegiatan</th>
+                      <th>Tanggal</th>
+                      <th>Tenggat Waktu</th>
+                      <th>Tempat</th>
+                      <th>Waktu</th>
+                      <th>Keterangan</th>
+                      <th class="text-center" style="width: 100px;">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $no = 1; 
+                    foreach($agenda as $u):?>
+                    <tr>
+                      <td class="text-center"><?= $no++;?></td>
+                      <td><?= $u['nama_agenda'];?></td>
+                      <td><?= $u['tanggal_agenda'];?></td>
+                      <td><?= $u['tenggat_agenda'];?></td>
+                      <td><?= $u['tempat'];?></td>
+                      <td><?= $u['waktu'];?></td>
+                      <td><?= $u['keterangan'];?></td>
+                      <td class="text-center">
+                        <a href="<?= base_url('detail-agenda/'.$u['id_agenda']);?>" class="btn btn-light"><i class="fa fa-list"></i> Hasil</a>
+                      </td>
+                    </tr>
+                    <?php endforeach;?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	  <?php endif;?>
   </section>
   
 </div>
