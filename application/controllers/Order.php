@@ -199,6 +199,7 @@ class Order extends CI_Controller {
 
 	public function rekapitulasi()
 	{
+		$this->db->truncate('tb_rekapitulasi');
     $data['title']		= 'Rangkum Order';
 		$pelanggan = $this->db->query("SELECT * FROM tb_pelanggan join tb_order ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) WHERE tb_order.tgl_order LIKE '2022-04%' GROUP BY tb_pelanggan.id_pelanggan")->result_array();
 
