@@ -20,6 +20,25 @@
               </div>
             </div>
             <div class="card-body">
+              <form action="<?= base_url('rekapitulasi-order'); ?>" method="post">
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label>Pilih Bulan</label>
+                    <select name="month" class="form-control" required>
+                      <option selected disabled>-- Pilih Bulan --</option>
+                      <?php 
+                        foreach ($month as $key) { ?>
+                          <option value="<?= $key['tgl1'] ?>" <?= $month_c == $key['tgl1'] ? 'selected' : '' ?>><?= $key['tgl'] ?></option>
+                      <?php  }
+                      ?>
+                    </select>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>&nbsp;</label><br>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-filter"></i> Filter</button>
+                  </div>
+                </div>
+              </form>
               <div class="table-responsive">
                 <table class="table table-striped" id="datatables-user">
                   <thead>

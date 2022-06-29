@@ -201,16 +201,23 @@ class Order extends CI_Controller {
 	{
 		$this->db->truncate('tb_rekapitulasi');
     $data['title']		= 'Rangkum Order';
+		$post_m = $this->input->post('month');
+		if(empty($post_m)){
+			$month = date('Y-m');
+		} else {
+			$month = $post_m;
+		}
+
 		$pelanggan = $this->db->query("SELECT * FROM tb_pelanggan join tb_order ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) WHERE tb_order.tgl_order LIKE '2022-04%' GROUP BY tb_pelanggan.id_pelanggan")->result_array();
 
 		$order = [];
 		foreach ($pelanggan as $p) {
 			$id_pelanggan = $p['id_pelanggan'];
-			$jaket = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Jaket' AND tb_order.tgl_order LIKE '2022-04%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
-			$kaos = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Kaos' AND tb_order.tgl_order LIKE '2022-04%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
-			$jas = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Jas' AND tb_order.tgl_order LIKE '2022-04%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
-			$kemeja = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Kemeja' AND tb_order.tgl_order LIKE '2022-04%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
-			$sweater = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Sweater' AND tb_order.tgl_order LIKE '2022-04%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
+			$jaket = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Jaket' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
+			$kaos = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Kaos' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
+			$jas = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Jas' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
+			$kemeja = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Kemeja' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
+			$sweater = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Sweater' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
 			$data = [
 				'id_pelanggan' => $id_pelanggan,
 				'jaket' => is_null($jaket['jumlah']) ? 0 : (int)$jaket['jumlah'],
@@ -226,8 +233,32 @@ class Order extends CI_Controller {
 		}
 
 		$data['title']		= 'Rekapitulasi Order';
+		$data['month_c'] = $month;
+		$data['month']		= $this->db->query("SELECT DATE_FORMAT(tgl_order, '%Y-%m') as tgl1, DATE_FORMAT(tgl_order, '%M %Y') as tgl FROM tb_order GROUP BY DATE_FORMAT(tgl_order, '%M %Y') order by tgl_order ASC")->result_array();
 		$data['order'] = $this->db->query("SELECT * FROM tb_rekapitulasi JOIN tb_pelanggan ON(tb_rekapitulasi.id_pelanggan=tb_pelanggan.id_pelanggan)")->result_array();
 
 		$this->load->view('order/data_rekapitulasi', $data);
+	}
+
+	public function xx()
+	{
+		$post_m = $this->input->post('month');
+    $data['title']		= 'Cash Flow';
+		if(empty($post_m)){
+			$month = date('Y-m');
+		} else {
+			$month = $post_m;
+		}
+		$data['month_c'] = $month;
+		$data['month']		= $this->db->query("SELECT DATE_FORMAT(tanggal, '%Y-%m') as tgl1, DATE_FORMAT(tanggal, '%M %Y') as tgl FROM tb_pemasukan UNION SELECT DATE_FORMAT(tanggal, '%Y-%m') as tgl1, DATE_FORMAT(tanggal, '%M %Y') as tgl FROM tb_pengeluaran GROUP BY DATE_FORMAT(tgl1, '%M %Y') order by tgl1 ASC")->result_array();
+		$data['cash']		= $this->db->query("SELECT tanggal as tgl, keterangan as ket, referensi as ref, jumlah as pemasukan, '' as pengeluaran 
+		FROM tb_pemasukan 
+		WHERE tanggal like '$month%'
+		UNION 
+		SELECT tanggal as tgl, keterangan as ket, referensi as ref, '' as pemasukan, jumlah as pengeluaran 
+		FROM tb_pengeluaran 
+		WHERE tanggal like '$month%'
+		order by tgl ASC")->result_array();
+		$this->load->view('cashflow/data', $data);
 	}
 }
