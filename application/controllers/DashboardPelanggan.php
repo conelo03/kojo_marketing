@@ -196,4 +196,90 @@ class DashboardPelanggan extends CI_Controller {
 
 		return $this->upload->data('file_name');
 	}
+
+	public function profile($id_pelanggan)
+	{
+		$p = $this->M_pelanggan->get_by_id($id_pelanggan);
+		$this->validation_profile($p['username']);
+		if (!$this->form_validation->run()) {
+			$data['title']		= 'Data Pelanggan';
+			$data['p'] = $p;
+			$data['kota'] = $this->db->get('tb_kota')->result_array();
+			$this->load->view('pelanggan-page/profile', $data);
+		} else {
+			$data		= $this->input->post(null, true);
+			$data_akun	= [
+				'id_pelanggan' => $id_pelanggan,
+				'nama_pelanggan'		=> $data['nama_pelanggan'],
+				'jenis_kelamin'		=> $data['jenis_kelamin'],
+				'no_telepon'		=> $data['no_telepon'],
+				'alamat'		=> $data['alamat'],
+				'id_kota'		=> $data['id_kota'],
+				'instansi'		=> $data['instansi'],
+				'username'		=> $data['username'],
+			];
+			if ($this->M_pelanggan->update($data_akun)) {
+				$this->session->set_flashdata('msg', 'error');
+				redirect('profile-pelanggan/'.$id_pelanggan);
+			} else {
+				$this->session->set_flashdata('msg', 'edit');
+				redirect('DashboardPelanggan');
+			}
+		}
+	}
+
+	private function validation_profile($username = null)
+	{
+		$username		= $username;
+		$username_baru 	= $this->input->post('username');
+		if($username == $username_baru){
+			$this->form_validation->set_rules('username', 'Username', 'required');	
+		} else {
+			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[tb_pelanggan.username]', ['is_unique'	=> 'Username Sudah Ada']);
+		}
+		$this->form_validation->set_rules('nama_pelanggan', 'Nama Pelanggan', 'required|trim');
+		$this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+		$this->form_validation->set_rules('no_telepon', 'No Telepon', 'required|trim');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+		$this->form_validation->set_rules('id_kota', 'Kota', 'required|trim');
+		$this->form_validation->set_rules('instansi', 'Instansi', 'required|trim');
+		
+	}
+
+	public function password($id_pelanggan)
+	{
+		$this->validation_password();
+		if (!$this->form_validation->run()) {
+			$data['title']		= 'Data Pelanggan';
+			$data['p'] = $this->M_pelanggan->get_by_id($id_pelanggan);
+			$this->load->view('pelanggan-page/password', $data);
+		} else {
+			$data		= $this->input->post(null, true);
+			$p = $this->M_pelanggan->get_by_id($id_pelanggan);
+			if(password_verify($data['password_old'], $p['password'])){
+				$data_akun	= [
+					'id_pelanggan' => $id_pelanggan,
+					'password'		=> password_hash($data['password'], PASSWORD_DEFAULT),
+				];
+			}else{
+				$this->session->set_flashdata('msg', 'password-salah');
+				redirect('password-pelanggan/'.$id_pelanggan);
+			}
+			
+			if ($this->M_pelanggan->update($data_akun)) {
+				$this->session->set_flashdata('msg', 'error');
+				redirect('password-pelanggan/'.$id_pelanggan);
+			} else {
+				$this->session->set_flashdata('msg', 'edit');
+				redirect('DashboardPelanggan');
+			}
+		}
+	}
+
+	private function validation_password()
+	{
+		$this->form_validation->set_rules('password', 'Password', 'trim');
+		$this->form_validation->set_rules('password2', 'Konfirmasi Password', 'matches[password]');
+		
+	}
 }

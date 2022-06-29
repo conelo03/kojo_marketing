@@ -76,7 +76,7 @@
       $('#select-atasan').selectpicker({
         search : true,
       });
-      $('#select-pejabat').selectpicker({
+      $('#select-kota').selectpicker({
         search : true,
       });
     });
