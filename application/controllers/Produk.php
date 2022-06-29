@@ -167,7 +167,7 @@ class Produk extends CI_Controller {
 
 	private function upload_file($file)
 	{
-		$config['upload_path'] = './assets/upload/'.$file;
+		$config['upload_path'] = '../produksi-kojo/assets/upload/'.$file;
 		$config['allowed_types'] = 'jpg|png|jpeg|pdf|docx|xlsx|doc|xls';
 		$config['max_size'] = 10000;
 		$this->upload->initialize($config);

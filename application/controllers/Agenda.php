@@ -173,7 +173,7 @@ class Agenda extends CI_Controller {
 
 	private function validation_agenda()
 	{
-		$this->form_validation->set_rules('tautan', 'Tautan', 'required|trim');
+		$this->form_validation->set_rules('tautan', 'Tautan', 'trim');
 		$this->form_validation->set_rules('keterangan', 'Keterangan', 'required|trim');
 		
 	}

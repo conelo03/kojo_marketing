@@ -27,7 +27,7 @@
                 </div>  
                 <div class="form-group">
                   <label>Tautan</label>
-                  <input type="text" name="tautan" class="form-control" value="<?= set_value('tautan', $agenda['tautan']); ?>" required="">
+                  <input type="text" name="tautan" class="form-control" value="<?= set_value('tautan', $agenda['tautan']); ?>">
                   <?= form_error('tautan', '<span class="text-danger small">', '</span>'); ?>
                 </div>
                 <div class="form-group">

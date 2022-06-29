@@ -42,7 +42,7 @@
                 </div>
                 <div class="form-group">
                   <label>Waktu</label>
-                  <input type="text" name="waktu" class="form-control" value="<?= set_value('waktu', $agenda['waktu']); ?>" required="">
+                  <input type="time" name="waktu" class="form-control" value="<?= set_value('waktu', $agenda['waktu']); ?>" required="">
                   <?= form_error('waktu', '<span class="text-danger small">', '</span>'); ?>
                 </div>
                 <div class="form-group">

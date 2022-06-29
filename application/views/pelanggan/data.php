@@ -17,7 +17,10 @@
             <div class="card-header">
               <h4>Data Pelanggan</h4>
               <div class="card-header-action">
-                <a href="<?= base_url('tambah-pelanggan');?>" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Data</a>
+                <?php if (is_admin()) { ?>
+                  <a href="<?= base_url('tambah-pelanggan');?>" class="btn btn-info"><i class="fa fa-plus"></i> Tambah Data</a>
+                <?php } ?>
+                
               </div>
             </div>
             <div class="card-body">
@@ -46,8 +49,11 @@
                       <td><?= $u['instansi'];?></td>
                       <td><?= $u['username'];?></td>
                       <td class="text-center">
-                        <a href="<?= base_url('edit-pelanggan/'.$u['id_pelanggan']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
-                        <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-pelanggan/'.$u['id_pelanggan']); ?>';"><i class="fa fa-trash"></i> Delete</button>
+                        <?php if (is_admin()) { ?>
+                          <a href="<?= base_url('edit-pelanggan/'.$u['id_pelanggan']);?>" class="btn btn-info"><i class="fa fa-edit"></i> Edit</a>
+                          <button class="btn btn-danger" data-confirm="Anda yakin ingin menghapus data ini?|Data yang sudah dihapus tidak akan kembali." data-confirm-yes="document.location.href='<?= base_url('hapus-pelanggan/'.$u['id_pelanggan']); ?>';"><i class="fa fa-trash"></i> Delete</button>
+                        <?php } ?>
+                        
                       </td>
                     </tr>
                     <?php endforeach;?>
