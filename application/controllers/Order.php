@@ -197,7 +197,7 @@ class Order extends CI_Controller {
 		force_download('/assets/upload/file_keuangan/5533-15688-1-PB.pdf', NULL);
 	}
 
-	public function rekapitulasi()
+	public function klasterisasi()
 	{
 		$this->db->truncate('tb_rekapitulasi');
     $data['title']		= 'Rangkum Order';
@@ -218,13 +218,19 @@ class Order extends CI_Controller {
 			$jas = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Jas' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
 			$kemeja = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Kemeja' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
 			$sweater = $this->db->query("SELECT tb_order.id_produk, tb_pelanggan.id_pelanggan, SUM(tb_order.jumlah_ukuran_s + tb_order.jumlah_ukuran_m + tb_order.jumlah_ukuran_l + tb_order.jumlah_ukuran_xl + tb_order.jumlah_ukuran_xxl) as jumlah FROM tb_order JOIN tb_pelanggan join tb_produk ON(tb_pelanggan.id_pelanggan=tb_order.id_pelanggan) and (tb_produk.id_produk=tb_order.id_produk) WHERE tb_produk.jenis_produk = 'Sweater' AND tb_order.tgl_order LIKE '$month%' AND tb_pelanggan.id_pelanggan = '".$p['id_pelanggan']."'")->row_array();
+			$jaket = is_null($jaket['jumlah']) ? 0 : (int)$jaket['jumlah'];
+			$kaos = is_null($kaos['jumlah']) ? 0 : (int)$kaos['jumlah'];
+			$jas = is_null($jas['jumlah']) ? 0 : (int)$jas['jumlah'];
+			$kemeja = is_null($kemeja['jumlah']) ? 0 : (int)$kemeja['jumlah'];
+			$sweater = is_null($sweater['jumlah']) ? 0 : (int)$sweater['jumlah'];
 			$data = [
 				'id_pelanggan' => $id_pelanggan,
-				'jaket' => is_null($jaket['jumlah']) ? 0 : (int)$jaket['jumlah'],
-				'kaos' => is_null($kaos['jumlah']) ? 0 : (int)$kaos['jumlah'],
-				'jas' => is_null($jas['jumlah']) ? 0 : (int)$jas['jumlah'],
-				'kemeja' => is_null($kemeja['jumlah']) ? 0 : (int)$kemeja['jumlah'],
-				'sweater' => is_null($sweater['jumlah']) ? 0 : (int)$sweater['jumlah'],
+				'jaket' => $jaket,
+				'kaos' => $kaos,
+				'jas' => $jas,
+				'kemeja' => $kemeja,
+				'sweater' => $sweater,
+				'total' => $jaket+$kaos+$jas+$kemeja+$sweater,
 			];
 
 			$this->db->insert('tb_rekapitulasi', $data);
@@ -240,25 +246,115 @@ class Order extends CI_Controller {
 		$this->load->view('order/data_rekapitulasi', $data);
 	}
 
-	public function xx()
-	{
-		$post_m = $this->input->post('month');
-    $data['title']		= 'Cash Flow';
-		if(empty($post_m)){
-			$month = date('Y-m');
-		} else {
-			$month = $post_m;
-		}
-		$data['month_c'] = $month;
-		$data['month']		= $this->db->query("SELECT DATE_FORMAT(tanggal, '%Y-%m') as tgl1, DATE_FORMAT(tanggal, '%M %Y') as tgl FROM tb_pemasukan UNION SELECT DATE_FORMAT(tanggal, '%Y-%m') as tgl1, DATE_FORMAT(tanggal, '%M %Y') as tgl FROM tb_pengeluaran GROUP BY DATE_FORMAT(tgl1, '%M %Y') order by tgl1 ASC")->result_array();
-		$data['cash']		= $this->db->query("SELECT tanggal as tgl, keterangan as ket, referensi as ref, jumlah as pemasukan, '' as pengeluaran 
-		FROM tb_pemasukan 
-		WHERE tanggal like '$month%'
-		UNION 
-		SELECT tanggal as tgl, keterangan as ket, referensi as ref, '' as pemasukan, jumlah as pengeluaran 
-		FROM tb_pengeluaran 
-		WHERE tanggal like '$month%'
-		order by tgl ASC")->result_array();
-		$this->load->view('cashflow/data', $data);
-	}
+	public function klasterisasi_next()
+	{    
+    $id = "";
+    $id = $this->db->query('select max(nomor) as m from tb_hasil_centroid');
+    foreach($id->result() as $i)
+    {
+      $id = $i->m;
+    }
+    $this->db->where('nomor', $id);
+    $data['centroid'] = $this->db->get('tb_hasil_centroid')->row_array();
+    $data['id'] = $id+1;
+    
+    $it = "";
+    $it = $this->db->query('select max(iterasi) as it from tb_centroid_temp');
+    foreach($it->result() as $i)
+    {
+      $it = $i->it;
+    }
+    
+    $it_temp = $it-1;
+    $this->db->where('iterasi', $it_temp);
+    $it_sebelum = $this->db->get('tb_centroid_temp');
+    $c1_sebelum = array();
+    $c2_sebelum = array();
+    $c3_sebelum = array();
+    $no=0;
+    foreach($it_sebelum->result() as $it_prev)
+    {
+      $c1_sebelum[$no] = $it_prev->c1;
+      $c2_sebelum[$no] = $it_prev->c2;
+      $c3_sebelum[$no] = $it_prev->c3;
+      $no++;
+    }
+    
+    $this->db->where('iterasi', $it);
+    $it_sesesudah = $this->db->get('tb_centroid_temp');
+    $c1_sesesudah = array();
+    $c2_sesesudah = array();
+    $c3_sesesudah = array();
+    $no=0;
+    foreach($it_sesesudah->result() as $it_next)
+    {
+      $c1_sesesudah[$no] = $it_next->c1;
+      $c2_sesesudah[$no] = $it_next->c2;
+      $c3_sesesudah[$no] = $it_next->c3;
+      $no++;
+    }
+    
+    if($c1_sebelum==$c1_sesesudah && 
+      $c2_sebelum==$c2_sesesudah && 
+      $c3_sebelum==$c3_sesesudah  )
+    {
+      echo $this->session->set_flashdata('msg','iterasi-selesai');
+      redirect('rekapitulasi-order-end');
+    }
+    else
+    {
+			$data['title'] = "Rekapitulasi Order";
+			$data['order'] = $this->db->query("SELECT * FROM tb_rekapitulasi JOIN tb_pelanggan ON(tb_rekapitulasi.id_pelanggan=tb_pelanggan.id_pelanggan)")->result_array();
+      $this->load->view('order/data_rekapitulasi_next', $data); 
+    }
+    
+  }
+	
+	function klasterisasi_end()
+  {
+    $data['title'] = "Rekapitulasi Order";
+    $data['order'] = $this->db->query("SELECT * FROM tb_rekapitulasi JOIN tb_pelanggan ON(tb_rekapitulasi.id_pelanggan=tb_pelanggan.id_pelanggan)")->result_array();
+
+    $data['q'] = $this->db->query('SELECT * from tb_centroid_temp group by iterasi')->result_array();
+    $get_max = $this->db->query("SELECT max(iterasi) as iterasi from tb_centroid_temp")->row();
+    $max = $get_max->iterasi;
+    $iterasi = $this->db->query("SELECT * from tb_centroid_temp where iterasi='$max' ")->result_array();
+    $id_pelangan = array();
+    $instansi = array();
+
+    foreach ($data['order'] as $a) {
+      $id_pelangan[]=$a['id_pelanggan'];
+      $instansi[]=$a['instansi'];
+    }
+
+    $no = 0;
+    foreach ($iterasi as $i) {
+      $id_pelanggan = $id_pelangan[$no];
+      $instansi = $instansi[$no];
+
+      if($i['c1'] == 1){
+        $klaster = 'C1';
+      } elseif($i['c2'] == 1){
+        $klaster = 'C2';
+      } elseif($i['c3'] == 1){
+        $klaster = 'C3';
+      }
+
+
+      $hasil['id_pelanggan'] = $id_pelanggan;
+      $hasil['instansi'] = $instansi;
+      $hasil['klaster'] = $klaster;
+
+      $this->db->insert('tb_hasil_klasterisasi', $hasil);
+      $no++;
+    }
+
+		$this->db->select('*');
+		$this->db->from('tb_hasil_klasterisasi');
+		$this->db->join('tb_pelanggan', 'tb_pelanggan.id_pelanggan=tb_hasil_klasterisasi.id_pelanggan');
+		$this->db->join('tb_kota', 'tb_kota.id_kota=tb_pelanggan.id_kota');
+    $data['hasil_klasterisasi'] = $this->db->get()->result_array();
+
+    $this->load->view('order/data_rekapitulasi_end', $data); 
+  }
 }

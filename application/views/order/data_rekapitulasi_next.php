@@ -20,25 +20,6 @@
               </div>
             </div>
             <div class="card-body">
-              <form action="<?= base_url('rekapitulasi-order'); ?>" method="post">
-                <div class="row">
-                  <div class="col-md-6 form-group">
-                    <label>Pilih Bulan</label>
-                    <select name="month" class="form-control" required>
-                      <option selected disabled>-- Pilih Bulan --</option>
-                      <?php 
-                        foreach ($month as $key) { ?>
-                          <option value="<?= $key['tgl1'] ?>" <?= $month_c == $key['tgl1'] ? 'selected' : '' ?>><?= $key['tgl'] ?></option>
-                      <?php  }
-                      ?>
-                    </select>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label>&nbsp;</label><br>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-filter"></i> Filter</button>
-                  </div>
-                </div>
-              </form>
               <div class="table-responsive">
                 <table class="table table-striped" id="">
                   <thead>
@@ -54,7 +35,7 @@
                   </thead>
                   <tbody>
                     <?php
-                    $no = 1; 
+                    $no = 1;
                     foreach($order as $u):
                     ?>
                     <tr>
@@ -75,17 +56,13 @@
         </div>
       </div>
     </div>
-    <?php
-      $c_c1 = [0, 0, 286, 0, 0];
-      $c_c2 = [0, 92, 0, 32, 0];
-      $c_c3 = [17, 0, 8, 0, 0];
-    ?>
+
     <div class="section-body">
       <div class="row">
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h4>Iterasi 1</h4>
+              <h4>Iterasi <?php echo $id;?></h4>
               <div class="card-header-action">
                 <a class="btn btn-success" href="<?php echo base_url('rekapitulasi-order-next')?>"><span class="fa fa-sync"></span> Proses Selanjutnya</a>
               </div>
@@ -108,40 +85,42 @@
                       <th>Kemeja</th>
                       <th>Kaos</th>
                       <th>Sweater</th>
-                      <?php for ($i=0; $i < count($c_c1); $i++) { ?>
-                        <th><?= $c_c1[$i] ?></th>
-                      <?php } ?>
-                      <?php for ($i=0; $i < count($c_c2); $i++) { ?>
-                        <th><?= $c_c2[$i] ?></th>
-                      <?php } ?>
-                      <?php for ($i=0; $i < count($c_c3); $i++) { ?>
-                        <th><?= $c_c3[$i] ?></th>
-                      <?php } ?>
+                      <th><?= $centroid['c1a'] ?></th>
+                      <th><?= $centroid['c1b'] ?></th>
+                      <th><?= $centroid['c1c'] ?></th>
+                      <th><?= $centroid['c1d'] ?></th>
+                      <th><?= $centroid['c1e'] ?></th>
+                      <th><?= $centroid['c2a'] ?></th>
+                      <th><?= $centroid['c2b'] ?></th>
+                      <th><?= $centroid['c2c'] ?></th>
+                      <th><?= $centroid['c2d'] ?></th>
+                      <th><?= $centroid['c2e'] ?></th>
+                      <th><?= $centroid['c3a'] ?></th>
+                      <th><?= $centroid['c3b'] ?></th>
+                      <th><?= $centroid['c3c'] ?></th>
+                      <th><?= $centroid['c3d'] ?></th>
+                      <th><?= $centroid['c3e'] ?></th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $c1a = $c_c1[0];
-                    $c1b = $c_c1[1];
-                    $c1c = $c_c1[2];
-                    $c1d = $c_c1[3];
-                    $c1e = $c_c1[4];
+                    $c1a = $centroid['c1a'];
+                    $c1b = $centroid['c1b'];
+                    $c1c = $centroid['c1c'];
+                    $c1d = $centroid['c1d'];
+                    $c1e = $centroid['c1e'];
                     
-                    $c2a = $c_c2[0];
-                    $c2b = $c_c2[1];
-                    $c2c = $c_c2[2];
-                    $c2d = $c_c2[3];
-                    $c2e = $c_c2[4];
+                    $c2a = $centroid['c2a'];
+                    $c2b = $centroid['c2b'];
+                    $c2c = $centroid['c2c'];
+                    $c2d = $centroid['c2d'];
+                    $c2e = $centroid['c2e'];
                     
-                    $c3a = $c_c3[0];
-                    $c3b = $c_c3[1];
-                    $c3c = $c_c3[2];
-                    $c3d = $c_c3[3];
-                    $c3e = $c_c3[4];
-
-                    $this->db->query('TRUNCATE table tb_centroid_temp');
-                    $this->db->query('TRUNCATE table tb_hasil_centroid');
-                    $this->db->query('TRUNCATE table tb_hasil_klasterisasi');
+                    $c3a = $centroid['c3a'];
+                    $c3b = $centroid['c3b'];
+                    $c3c = $centroid['c3c'];
+                    $c3d = $centroid['c3d'];
+                    $c3e = $centroid['c3e'];
 
                     $no = 1; 
                     $x = 0;
@@ -152,7 +131,7 @@
                       $hc = [$hc1, $hc2, $hc3];
                       $min_hc = min($hc);
                       $arr_c = [
-                        'iterasi' => 1,
+                        'iterasi' => $id,
                         'c1' => $hc1 == $min_hc ? 1 : 0,
                         'c2' => $hc2 == $min_hc ? 1 : 0,
                         'c3' => $hc3 == $min_hc ? 1 : 0

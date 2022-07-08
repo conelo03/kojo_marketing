@@ -103,7 +103,9 @@ $route['edit-order/(:any)'] 	    = 'Order/edit/$1';
 $route['hapus-order/(:any)']    	= 'Order/hapus/$1';
 $route['detail-order/(:any)']		= 'Order/detail/$1';
 $route['confirm-order/(:any)']		= 'Order/confirm/$1';
-$route['rekapitulasi-order'] = 'Order/rekapitulasi';
+$route['rekapitulasi-order'] = 'Order/klasterisasi';
+$route['rekapitulasi-order-next'] = 'Order/klasterisasi_next';
+$route['rekapitulasi-order-end'] = 'Order/klasterisasi_end';
 
 $route['pelanggan'] 				    = 'Pelanggan';
 $route['tambah-pelanggan'] 	        = 'Pelanggan/tambah';
